@@ -1,0 +1,7 @@
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\obj\Debug\Lab2_DotNet2.csproj.AssemblyReference.cache
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\obj\Debug\Lab2_DotNet2.csproj.CoreCompileInputs.cache
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\bin\Debug\Lab2_DotNet2.exe.config
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\bin\Debug\Lab2_DotNet2.exe
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\bin\Debug\Lab2_DotNet2.pdb
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\obj\Debug\Lab2_DotNet2.exe
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet2\obj\Debug\Lab2_DotNet2.pdb

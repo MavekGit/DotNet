@@ -1,0 +1,10 @@
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\bin\Debug\Lab2_DotNet.exe.config
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\bin\Debug\Lab2_DotNet.exe
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\bin\Debug\Lab2_DotNet.pdb
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.csproj.AssemblyReference.cache
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.Properties.Resources.resources
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.csproj.GenerateResource.cache
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.csproj.CoreCompileInputs.cache
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.exe
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.pdb
+C:\Users\Mavek\Desktop\DotNet\Lab2DotNet\Lab2_DotNet\obj\Debug\Lab2_DotNet.UstSk.resources

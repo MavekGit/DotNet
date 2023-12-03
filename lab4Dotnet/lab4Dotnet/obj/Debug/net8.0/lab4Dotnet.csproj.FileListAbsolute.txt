@@ -1,0 +1,14 @@
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\bin\Debug\net8.0\lab4Dotnet.exe
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\bin\Debug\net8.0\lab4Dotnet.deps.json
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\bin\Debug\net8.0\lab4Dotnet.runtimeconfig.json
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\bin\Debug\net8.0\lab4Dotnet.dll
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\bin\Debug\net8.0\lab4Dotnet.pdb
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.AssemblyInfoInputs.cache
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.AssemblyInfo.cs
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.csproj.CoreCompileInputs.cache
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.dll
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\refint\lab4Dotnet.dll
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.pdb
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\lab4Dotnet.genruntimeconfig.cache
+C:\Users\MaciejWecki\Desktop\DotNet\LabDotNet\lab4Dotnet\lab4Dotnet\obj\Debug\net8.0\ref\lab4Dotnet.dll

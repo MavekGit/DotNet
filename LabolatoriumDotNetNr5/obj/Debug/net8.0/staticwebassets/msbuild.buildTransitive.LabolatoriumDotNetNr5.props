@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\LabolatoriumDotNetNr5.props" />
+</Project>

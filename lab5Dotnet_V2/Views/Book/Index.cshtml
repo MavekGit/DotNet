@@ -1,0 +1,93 @@
+﻿
+@model IEnumerable<Books>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+
+    <div class="row pt-4">
+
+        <div class="col-6">
+            <h1 class="text-primary">Books</h1>
+
+        </div>
+     
+
+        <div class="col-6 text-end">
+
+            <a asp-controller="Book" asp-action="Create" class"btn-primary">
+
+                <h1 class="text-primary">New Book</h1>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+<table class="table table-bordered table-striped" style="width:100%">
+
+    <thead>
+
+
+        <tr>
+
+            <th>
+                
+                Name
+
+            </th>
+
+            <th>
+
+                Author
+
+            </th>
+
+            <th>
+
+                Release Time
+
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+    
+        @foreach(var obj in Model)
+        {
+            <tr>
+
+                <td width="40%">
+                        @Html.DisplayFor(model => obj.Name)
+                        @* @Html.DisplayNameFor(model => model.Name) *@
+                    @* @obj.Name *@
+
+                </td>
+
+                <td width="30%">
+
+                        @Html.DisplayNameFor(model => model.Author)
+                    @* @obj.Author *@
+
+                </td>
+
+                <td width="30%">
+                        @Html.DisplayNameFor(model => model.RealeseDate)
+                    @* @obj.RealeseDate *@
+
+                </td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+</div>

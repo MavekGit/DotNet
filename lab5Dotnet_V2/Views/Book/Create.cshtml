@@ -1,0 +1,59 @@
+﻿@model Books
+
+@* <form method="post">
+
+    <div class="border p-3 mt-4">
+
+        <div class="row pb-2">
+
+            <h2 class="text-primary"> New Book</h2>
+            <hr />
+        </div>
+
+        <div class=="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+    </div>
+
+</form>
+ *@
+
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RealeseDate" class="control-label"></label>
+                <input asp-for="RealeseDate" class="form-control" />
+                <span asp-validation-for="RealeseDate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@* 
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+ *@

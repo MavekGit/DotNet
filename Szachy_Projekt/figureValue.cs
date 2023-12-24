@@ -23,7 +23,8 @@ namespace Szachy_Projekt
         BlackKing = 1000,
         WhiteKing = 1100,
         BlackPiece = 10,
-        WhitePiece = 100
+        WhitePiece = 100,
+        Dot = 10000
 
 
     }

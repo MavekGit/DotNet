@@ -43,8 +43,8 @@ namespace Szachy_Projekt
     {
         private Button[,] buttons;
         private figureValue[,] position;
-        private figureValue[] blackPiecesCannotCapture;
-        private figureValue[] whitePiecesCannotCapture;
+        //private figureValue[] blackPiecesCannotCapture;
+        //private figureValue[] whitePiecesCannotCapture;
         public Button button { get; set; }
         public Button FirstClick { get; set; }
         public Button SecondClick { get; set; }
@@ -63,17 +63,19 @@ namespace Szachy_Projekt
             set { position = value; }
         }
 
-        public figureValue[] BlackPiecesCannotCapture
-        {
-            get { return blackPiecesCannotCapture; }
-        }
+        //public figureValue[] BlackPiecesCannotCapture
+        //{
+        //    get { return blackPiecesCannotCapture; }
+        //    set { blackPiecesCannotCapture = value; }
+        //}
 
-        public figureValue[] WhitePiecesCannotCapture
-        {
-            get { return whitePiecesCannotCapture; }
-        }
+        //public figureValue[] WhitePiecesCannotCapture
+        //{
+        //    get { return whitePiecesCannotCapture; }
+        //    set { blackPiecesCannotCapture = value; }
+        //}
 
-        public ChessboardParameters(Button[,] buttons, figureValue[,] position, Button firstClick, Button secondClick, int currentRow, int currentColumn)
+        public ChessboardParameters(Button[,] buttons, figureValue[,] position, Button firstClick, Button secondClick, int currentRow, int currentColumn, figureValue[] blackPiecesCannotCapture, figureValue[] whitePiecesCannotCapture)
         {
             this.buttons = buttons;
             this.position = position;
@@ -82,8 +84,8 @@ namespace Szachy_Projekt
             CurrentRow = currentRow;
             CurrentColumn = currentColumn;
 
-            blackPiecesCannotCapture = new figureValue[] { figureValue.BlackPawn,figureValue.BlackKnight,figureValue.BlackBishop,figureValue.BlackKnight,figureValue.BlackQueen,figureValue.WhiteKing};
-            whitePiecesCannotCapture = new figureValue[] { figureValue.WhitePawn,figureValue.WhiteKnight,figureValue.WhiteBishop,figureValue.WhiteKnight,figureValue.WhiteQueen,figureValue.BlackKnight};
+            //BlackPiecesCannotCapture = blackPiecesCannotCapture ?? new figureValue[] { figureValue.BlackPawn, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackKnight, figureValue.BlackQueen, figureValue.WhiteKing };
+            //WhitePiecesCannotCapture = whitePiecesCannotCapture ?? new figureValue[] { figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteKnight, figureValue.WhiteQueen, figureValue.BlackKnight };
         }
     }
 
@@ -115,14 +117,43 @@ namespace Szachy_Projekt
 
         private void BlackKnightMove(int row, int column, Button button)
         {
+            figureValue[] blackPiecesAttacked = new figureValue[] { figureValue.BlackPawn,figureValue.BlackRook, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackQueen};
+            figureValue[] whitePiecesAttacked = new figureValue[] { figureValue.WhitePawn,figureValue.WhiteRook, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteQueen };
 
-            
+
+
+
             if ( param.FirstClick == null && param.Position[row, column] == figureValue.BlackKnight)
             {
+
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+
+                        if (param.Buttons[i, j].Background == Brushes.Red && (i + j) % 2 == 0)
+                        {
+                            param.Buttons[i, j].Background = Brushes.Gray;
+                        }
+                        else if (param.Buttons[i, j].Background == Brushes.Red && (i + j) % 2 != 0)
+                        {
+                            param.Buttons[i, j].Background = Brushes.White;
+                        }
+
+                        if (param.Buttons[i, j].Content is System.Windows.Controls.Image image && image.Source == Images.Dot)
+                        {
+                            param.Buttons[i, j].Content = "";
+                        }
+
+
+                    }
+                }
+
                 param.FirstClick = button;
                 param.CurrentRow = row;
                 param.CurrentColumn = column;
 
+               
                 // BlackKnightCheck = true;
                 int futureRow = 0;
                 int futureColumn = 0;
@@ -142,35 +173,21 @@ namespace Szachy_Projekt
                             futureRow = row + i;
                             futureColumn = column + j;
 
-                        Debug.WriteLine("row: " + row + ", i: " + i + ", column: " + column + ", j: " + j + ", futureRow: " + futureRow + ", futureColumn: " + futureColumn);
-
-
-                        //Debug.WriteLine(param.BlackPiecesCannotCapture[0], "XD");
-
+                      
                         if ((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8) && param.Position[futureRow,futureColumn] == figureValue.Empty)
                         {
                             param.Buttons[futureRow, futureColumn].Content = new System.Windows.Controls.Image { Source = Images.Dot };
-                            Debug.WriteLine(param.Position[futureRow, futureColumn]);
-
+                            
                         }
-                        else if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)))
+                        else if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)) && whitePiecesAttacked.Contains(param.Position[futureRow,futureColumn]))
                         {
-
-                            //foreach (figureValue blackPiece in param.BlackPiecesCannotCapture)
-                            //{
-                            //    if (param.Position[futureRow, futureColumn] == blackPiece)
-                            //    {
-    
-                            //        param.Buttons[futureRow, futureColumn].Background = new SolidColorBrush(Colors.Red);
-                                    
-                            //    }
-                            //}
+                           param.Buttons[futureRow, futureColumn].Background = Brushes.Red;
                         }
                     }
                 }
 
             }
-            else if ((param.FirstClick != null) && (param.SecondClick == null) && ((param.Position[row, column] == figureValue.Empty || (param.Position[row, column] > figureValue.BlackPiece) && param.BlackPiecesCannotCapture.Contains(param.Position[row, column])) && ((Math.Abs(row - param.CurrentRow) == 1 && (Math.Abs(column - param.CurrentColumn) == 2)) || ((Math.Abs(row - param.CurrentRow) == 2 && (Math.Abs(column - param.CurrentColumn) == 1))))))
+            else if ((param.FirstClick != null) && (param.SecondClick == null) && ((param.Buttons[row, column].Content is System.Windows.Controls.Image image && image.Source == Images.Dot || (whitePiecesAttacked.Contains(param.Position[row, column])))))
             {
 
                 param.SecondClick = button;
@@ -185,12 +202,61 @@ namespace Szachy_Projekt
                 // BlackKnightCheck = false;
                 // GlobalTurn = true;
 
+
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+
+                        if (param.Buttons[i, j].Background == Brushes.Red && (i + j) % 2 == 0)
+                        {
+                            param.Buttons[i, j].Background = Brushes.Gray;
+                        }
+                        else if (param.Buttons[i, j].Background == Brushes.Red && (i + j) % 2 != 0)
+                        {
+                            param.Buttons[i, j].Background = Brushes.White;
+                        }
+
+                        if (param.Buttons[i, j].Content is System.Windows.Controls.Image image1 && image1.Source == Images.Dot)
+                        {
+                            param.Buttons[i, j].Content = "";
+                        }
+
+
+                    }
+                }
+
             }
             else
             {
                 param.FirstClick = null;
                 param.SecondClick = null;
                 // BlackKnightCheck = false;
+
+
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+
+                        if (param.Buttons[i, j].Background == Brushes.Red && (i + j) % 2 == 0)
+                        {
+                            param.Buttons[i, j].Background = Brushes.Gray;
+                        }
+                        else if (param.Buttons[i, j].Background == Brushes.Red && (i + j) % 2 != 0)
+                        {
+                            param.Buttons[i, j].Background = Brushes.White;
+                        }
+
+                        if (param.Buttons[i, j].Content is System.Windows.Controls.Image image2 && image2.Source == Images.Dot)
+                        {
+                            param.Buttons[i, j].Content = "";
+                        }
+
+
+                    }
+                }
+
             }
 
         }

@@ -11,7 +11,7 @@ namespace Szachy_Projekt
     public static class Images
     {
 
-        
+        public readonly static ImageSource Dot = LoadImage("dot.png");
         public readonly static ImageSource BlackBishop = LoadImage("BBishop.png");
         public readonly static ImageSource WhiteBishop = LoadImage("WBishop.png");
         public readonly static ImageSource WhiteKnight = LoadImage("WKnight.png");

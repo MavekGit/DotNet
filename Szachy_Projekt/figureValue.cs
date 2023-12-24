@@ -21,7 +21,10 @@ namespace Szachy_Projekt
         WhiteRook,
         WhiteQueen,
         BlackKing = 1000,
-        WhiteKing = 1100
+        WhiteKing = 1100,
+        BlackPiece = 10,
+        WhitePiece = 100
+
 
     }
 }

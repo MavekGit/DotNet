@@ -15,6 +15,8 @@
     <None Remove="Assets\BPawn.png" />
     <None Remove="Assets\BQueen.png" />
     <None Remove="Assets\BRook.png" />
+    <None Remove="Assets\dot.png" />
+    <None Remove="Assets\dot.svg" />
     <None Remove="Assets\IMG_MainMenu.jpg" />
     <None Remove="Assets\WBishop.png" />
     <None Remove="Assets\WKing.png" />
@@ -31,6 +33,7 @@
     <Resource Include="Assets\BPawn.png" />
     <Resource Include="Assets\BQueen.png" />
     <Resource Include="Assets\BRook.png" />
+    <Resource Include="Assets\dot.png" />
     <Resource Include="Assets\IMG_MainMenu.jpg" />
     <Resource Include="Assets\WBishop.png" />
     <Resource Include="Assets\WKing.png" />

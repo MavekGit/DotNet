@@ -38,19 +38,66 @@ namespace Szachy_Projekt
     /// <summary>
     /// Logika interakcji dla klasy chessGame.xaml
     /// </summary>
+
+    struct ChessboardParameters
+    {
+        private Button[,] buttons;
+        private figureValue[,] position;
+        private figureValue[] blackPiecesCannotCapture;
+        private figureValue[] whitePiecesCannotCapture;
+        public Button button { get; set; }
+        public Button FirstClick { get; set; }
+        public Button SecondClick { get; set; }
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
+
+        public Button[,] Buttons
+        {
+            get { return buttons; }
+            set { buttons = value; }
+        }
+
+        public figureValue[,] Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
+        public figureValue[] BlackPiecesCannotCapture
+        {
+            get { return blackPiecesCannotCapture; }
+        }
+
+        public figureValue[] WhitePiecesCannotCapture
+        {
+            get { return whitePiecesCannotCapture; }
+        }
+
+        public ChessboardParameters(Button[,] buttons, figureValue[,] position, Button firstClick, Button secondClick, int currentRow, int currentColumn)
+        {
+            this.buttons = buttons;
+            this.position = position;
+            FirstClick = firstClick;
+            SecondClick = secondClick;
+            CurrentRow = currentRow;
+            CurrentColumn = currentColumn;
+
+            blackPiecesCannotCapture = new figureValue[] { figureValue.BlackPawn,figureValue.BlackKnight,figureValue.BlackBishop,figureValue.BlackKnight,figureValue.BlackQueen,figureValue.WhiteKing};
+            whitePiecesCannotCapture = new figureValue[] { figureValue.WhitePawn,figureValue.WhiteKnight,figureValue.WhiteBishop,figureValue.WhiteKnight,figureValue.WhiteQueen,figureValue.BlackKnight};
+        }
+    }
+
+
     public partial class chessGame : Page
     {
-        private Button firstClick;
-        private Button secondClick;
-        //private int CurrentRow = -100;
-        //private int CurrentColumn = -100;
 
-
+        private ChessboardParameters param = new ChessboardParameters();
         public chessGame()
         {
             InitializeComponent();
  
             generateChessboard();
+            
 
         }
 
@@ -62,57 +109,99 @@ namespace Szachy_Projekt
             int column = Grid.GetColumn(button);
             int row = Grid.GetRow(button);
 
-            //BlackKnightMove(row, column, button);
+            BlackKnightMove(row, column, button);
 
         }
 
-        //private void BlackKnightMove(int row, int column, Button button)
-        //{
-            
-
-        //    if (firstClick == null && position[row, column] == figureValue.BlackKnight)
-        //    {
-        //        firstClick = button;
-        //        CurrentRow = row;
-        //        CurrentColumn = column;
-        //       // BlackKnightCheck = true;
-
-        //    }
-        //    else if ((firstClick != null) && (secondClick == null) && ((position[row, column] == figureValue.Empty || (position[row, column] > 10) && position[row, column] < 100) && ((Math.Abs(row - CurrentRow) == 1 && (Math.Abs(column - CurrentColumn) == 2)) || ((Math.Abs(row - CurrentRow) == 2 && (Math.Abs(column - CurrentColumn) == 1))))))
-        //    {
-
-
-
-        //        secondClick = button;
-
-                               
-                
-        //        buttons[CurrentRow, CurrentColumn].Content = "";
-        //        buttons[row, column].Content = new System.Windows.Controls.Image { Source = Images.BlackKnight }; ;
-        //        position[row, column] = figureValue.BlackKnight;
-        //        position[CurrentRow, CurrentColumn] = 0;
-
-        //        firstClick = null;
-        //        secondClick = null;
-        //       // BlackKnightCheck = false;
-        //       // GlobalTurn = true;
-
-        //    }
-        //    else
-        //    {
-        //        firstClick = null;
-        //        secondClick = null;
-        //       // BlackKnightCheck = false;
-        //    }
-
-        //}
-
-
-
-        private figureValue[,] generateChessboard()
+        private void BlackKnightMove(int row, int column, Button button)
         {
 
-            Button[,] buttons = new Button[8, 8];
+            
+            if ( param.FirstClick == null && param.Position[row, column] == figureValue.BlackKnight)
+            {
+                param.FirstClick = button;
+                param.CurrentRow = row;
+                param.CurrentColumn = column;
+
+                // BlackKnightCheck = true;
+                int futureRow = 0;
+                int futureColumn = 0;
+
+                int[] knightMoves = { -2, -1, 1, 2 };
+
+                foreach (int i in knightMoves)
+                {
+                    foreach (int j in knightMoves)
+                    {
+                        
+                        if (Math.Abs(i) + Math.Abs(j) != 3)
+                        {
+                            continue;
+                        }
+
+                            futureRow = row + i;
+                            futureColumn = column + j;
+
+                        Debug.WriteLine("row: " + row + ", i: " + i + ", column: " + column + ", j: " + j + ", futureRow: " + futureRow + ", futureColumn: " + futureColumn);
+
+
+                        //Debug.WriteLine(param.BlackPiecesCannotCapture[0], "XD");
+
+                        if ((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8) && param.Position[futureRow,futureColumn] == figureValue.Empty)
+                        {
+                            param.Buttons[futureRow, futureColumn].Content = new System.Windows.Controls.Image { Source = Images.Dot };
+                            Debug.WriteLine(param.Position[futureRow, futureColumn]);
+
+                        }
+                        else if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)))
+                        {
+
+                            //foreach (figureValue blackPiece in param.BlackPiecesCannotCapture)
+                            //{
+                            //    if (param.Position[futureRow, futureColumn] == blackPiece)
+                            //    {
+    
+                            //        param.Buttons[futureRow, futureColumn].Background = new SolidColorBrush(Colors.Red);
+                                    
+                            //    }
+                            //}
+                        }
+                    }
+                }
+
+            }
+            else if ((param.FirstClick != null) && (param.SecondClick == null) && ((param.Position[row, column] == figureValue.Empty || (param.Position[row, column] > figureValue.BlackPiece) && param.BlackPiecesCannotCapture.Contains(param.Position[row, column])) && ((Math.Abs(row - param.CurrentRow) == 1 && (Math.Abs(column - param.CurrentColumn) == 2)) || ((Math.Abs(row - param.CurrentRow) == 2 && (Math.Abs(column - param.CurrentColumn) == 1))))))
+            {
+
+                param.SecondClick = button;
+
+                param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
+                param.Buttons[row, column].Content = new System.Windows.Controls.Image { Source = Images.BlackKnight }; ;
+                param.Position[row, column] = figureValue.BlackKnight;
+                param.Position[param.CurrentRow, param.CurrentColumn] = 0;
+
+                param.FirstClick = null;
+                param.SecondClick = null;
+                // BlackKnightCheck = false;
+                // GlobalTurn = true;
+
+            }
+            else
+            {
+                param.FirstClick = null;
+                param.SecondClick = null;
+                // BlackKnightCheck = false;
+            }
+
+        }
+
+
+
+        private void generateChessboard()
+        {
+            //ChessboardParameters chessboardParameters = new ChessboardParameters();
+
+            Button[,] buttons = new Button[8,8];
             figureValue[,] position = new figureValue[8, 8];
 
             for (int i = 0; i < 8; i++)
@@ -120,6 +209,7 @@ namespace Szachy_Projekt
                 for (int j = 0; j < 8; j++)
                 {
                     Button button = new Button();
+                    param.button = button;
 
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
@@ -216,7 +306,8 @@ namespace Szachy_Projekt
                 }
             }
 
-            return position;
+            param.Position = position;
+            param.Buttons = buttons;
         }
 
        

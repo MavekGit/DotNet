@@ -9,11 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\BBishop.png" />
+    <None Remove="Assets\BKing.png" />
+    <None Remove="Assets\BKnight.png" />
+    <None Remove="Assets\BPawn.png" />
+    <None Remove="Assets\BQueen.png" />
+    <None Remove="Assets\BRook.png" />
     <None Remove="Assets\IMG_MainMenu.jpg" />
+    <None Remove="Assets\WBishop.png" />
+    <None Remove="Assets\WKing.png" />
+    <None Remove="Assets\WKnight.png" />
+    <None Remove="Assets\WPawn.png" />
+    <None Remove="Assets\WQueen.png" />
+    <None Remove="Assets\WRook.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\BBishop.png" />
+    <Resource Include="Assets\BKing.png" />
+    <Resource Include="Assets\BKnight.png" />
+    <Resource Include="Assets\BPawn.png" />
+    <Resource Include="Assets\BQueen.png" />
+    <Resource Include="Assets\BRook.png" />
     <Resource Include="Assets\IMG_MainMenu.jpg" />
+    <Resource Include="Assets\WBishop.png" />
+    <Resource Include="Assets\WKing.png" />
+    <Resource Include="Assets\WKnight.png" />
+    <Resource Include="Assets\WPawn.png" />
+    <Resource Include="Assets\WQueen.png" />
+    <Resource Include="Assets\WRook.png" />
   </ItemGroup>
 
 </Project>

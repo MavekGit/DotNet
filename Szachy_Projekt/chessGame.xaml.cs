@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
+using Szachy_Projekt.Pieces;
 
 
 
@@ -39,7 +40,7 @@ namespace Szachy_Projekt
     /// Logika interakcji dla klasy chessGame.xaml
     /// </summary>
 
-        public struct param
+    public struct param
     {
 
         public static Button[,] Buttons { get; set; }
@@ -108,11 +109,18 @@ namespace Szachy_Projekt
             {
                 Knight whiteKnight = new Knight();
                 whiteKnight.FigureMove(row, column, button, figureValue.WhiteKnight, Images.WhiteKnight, param.BlackPiecesAttacked);
+
+                Bishop whiteBishop = new Bishop();
+                whiteBishop.FigureMove(row, column, button, figureValue.WhiteBishop, Images.WhiteBishop, param.BlackPiecesAttacked);
             }
             else if(param.GlobalTurn == false)
             {
+                
                 Knight blackKnight = new Knight();
                 blackKnight.FigureMove(row, column, button, figureValue.BlackKnight, Images.BlackKnight, param.WhitePiecesAttacked);
+
+                Bishop blackBishop = new Bishop();
+                blackBishop.FigureMove(row, column, button, figureValue.BlackBishop, Images.BlackBishop, param.WhitePiecesAttacked);
             }
 
         }

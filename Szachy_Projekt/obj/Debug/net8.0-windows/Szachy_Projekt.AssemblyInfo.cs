@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Szachy_Projekt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad8f15d49404ba9e31ad9171a562b90a4f15f9d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54f014846cae21a76486d4d17e1ba1b0643d3c58")]
 [assembly: System.Reflection.AssemblyProductAttribute("Szachy_Projekt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Szachy_Projekt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

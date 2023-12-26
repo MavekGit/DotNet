@@ -88,8 +88,11 @@ namespace Szachy_Projekt
                 }
 
             }
-            //else if ((param.FirstClick != null) && (param.Buttons[row, column].Content is System.Windows.Controls.Image image1 && image1.Source != Images.Dot && param.Buttons[row, column].Background != Brushes.Red))
-            else if((param.FirstClick != null) && ( (figureColor.Contains(param.Position[row,column])) && ( (param.Position[param.CurrentRow,param.CurrentColumn] != param.Position[row, column]) || (param.Position[param.CurrentRow, param.CurrentColumn] == param.Position[row, column] && (row != param.CurrentRow || column != param.CurrentColumn))) ))
+
+            //else if((param.FirstClick != null) && ( (figureColor.Contains(param.Position[row,column])) && ( (param.Position[param.CurrentRow,param.CurrentColumn] != param.Position[row, column]) || (param.Position[param.CurrentRow, param.CurrentColumn] == param.Position[row, column] && (row != param.CurrentRow || column != param.CurrentColumn))) ))
+            
+            // Optimazed if steatment
+            else if ((param.FirstClick != null) && ((figureColor.Contains(param.Position[row, column])) && (((row != param.CurrentRow || column != param.CurrentColumn)))))
             {
                 //Debug.WriteLine("FIGURE PRZED FUNKCJĄ " + figure);
                 //Debug.WriteLine("PICKED FIGURE PRZED FUNKCJĄ " + param.PickedFigure);

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Szachy_Projekt.Pieces;
 
 namespace Szachy_Projekt
 {
@@ -98,8 +99,16 @@ namespace Szachy_Projekt
                 param.FirstClick = null;
                 param.SecondClick = null;
 
-                
+                Knight whiteKnight = new Knight();
+                Bishop whiteBishop = new Bishop();
+                Knight blackKnight = new Knight();
+                Bishop blackBishop = new Bishop();
 
+
+                whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
+                whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
+                blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
+                blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
                 //figure = param.Position[row, column];
 
                 //FigurePicked(row,column,button,figure,figureAttacked);

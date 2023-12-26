@@ -43,6 +43,7 @@ namespace Szachy_Projekt
 
         protected void ShowLegalMoves(int futureRow, int futureColumn, figureValue[] figureAttacked)
         {
+           
             if ((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8) && param.Position[futureRow, futureColumn] == figureValue.Empty)
             {
                 param.Buttons[futureRow, futureColumn].Content = new System.Windows.Controls.Image { Source = Images.Dot };
@@ -54,66 +55,97 @@ namespace Szachy_Projekt
             }
         }
        
-        public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked)
+        public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked, figureValue[] figureColor)
         {
 
-            {
-
-                if (param.FirstClick == null && param.Position[row, column] == figure)
-                {
-
-                    HelpMoveClear();
-
-                    param.FirstClick = button;
-                    param.CurrentRow = row;
-                    param.CurrentColumn = column;
-                    
-
-                    LegalMoves(row, column, figureAttacked);
-
-                }
+            //Debug.WriteLine("FIGURE MOVE " + figure);
 
                 
-                else if ((param.FirstClick != null) && (param.SecondClick == null) && ((param.Buttons[row, column].Content is System.Windows.Controls.Image image && image.Source == Images.Dot || param.Buttons[row, column].Background == Brushes.Red )))
+            if ((param.FirstClick != null) && (param.SecondClick == null) && ((param.Buttons[row, column].Content is System.Windows.Controls.Image image && image.Source == Images.Dot || param.Buttons[row, column].Background == Brushes.Red )))
+            {
+                Debug.WriteLine("FIGURE MOVE IF FUNCTION " + figure);
+
+                param.SecondClick = button;
+
+                param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
+                param.Buttons[row, column].Content = new System.Windows.Controls.Image { Source = figureImage }; ;
+                param.Position[row, column] = figure;
+                param.Position[param.CurrentRow, param.CurrentColumn] = 0;
+
+                param.FirstClick = null;
+                param.SecondClick = null;
+                param.PickedFigure = figureValue.NonePicked;
+                HelpMoveClear();
+
+                if (param.BlackPieces.Contains(figure))
                 {
-
-                    param.SecondClick = button;
-
-                    param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
-                    param.Buttons[row, column].Content = new System.Windows.Controls.Image { Source = figureImage }; ;
-                    param.Position[row, column] = figure;
-                    param.Position[param.CurrentRow, param.CurrentColumn] = 0;
-
-                    param.FirstClick = null;
-                    param.SecondClick = null;
-                    
-                    HelpMoveClear();
-
-                    if(param.BlackPieces.Contains(figure))
-                    {
-                        param.GlobalTurn = true;
-                    }
-                    else if(param.WhitePieces.Contains(figure))
-                    {
-                        param.GlobalTurn = false;
-                    }
-
+                    param.GlobalTurn = true;
                 }
-                else
+                else if(param.WhitePieces.Contains(figure))
                 {
-                    param.FirstClick = null;
-                    param.SecondClick = null;
-
-                    HelpMoveClear();
-
+                    param.GlobalTurn = false;
                 }
 
             }
+            //else if ((param.FirstClick != null) && (param.Buttons[row, column].Content is System.Windows.Controls.Image image1 && image1.Source != Images.Dot && param.Buttons[row, column].Background != Brushes.Red))
+            else if((param.FirstClick != null) && ( (figureColor.Contains(param.Position[row,column]) && param.Position[param.CurrentRow,param.CurrentColumn] != param.Position[row, column])) )
+            {
+                //Debug.WriteLine("FIGURE PRZED FUNKCJĄ " + figure);
+                //Debug.WriteLine("PICKED FIGURE PRZED FUNKCJĄ " + param.PickedFigure);
+                //Debug.WriteLine("WARTOŚĆ POLA PRZED FUNCKJĄ " + param.Position[row, column]);
+                //Debug.WriteLine("-----------------------------------------------------------");
 
+                param.FirstClick = null;
+                param.SecondClick = null;
+
+                
+
+                //figure = param.Position[row, column];
+
+                //FigurePicked(row,column,button,figure,figureAttacked);
+
+                //Debug.WriteLine("FIGURE PO FUNKCJI" + figure);
+                //Debug.WriteLine("PICKED FIGURE PO FUNKCJI " + param.PickedFigure);
+                //Debug.WriteLine("WARTOŚĆ POLA PO FUNCKJI " + param.Position[row, column]);
+                //Debug.WriteLine("-----------------------------------------------------------");
+
+
+            }
+            else if ((param.FirstClick != null) && param.Position[row, column] == figureValue.Empty)
+            {
+                param.FirstClick = null;
+                param.SecondClick = null;
+                param.PickedFigure = figureValue.NonePicked;
+                HelpMoveClear();
+            }
 
         }
 
+        public void FigurePicked(int row, int column, Button button, figureValue figure, figureValue[] figureAttacked)
+        {
+            
+            //Debug.WriteLine("WARTOŚĆ POLA PRZED PICKED FIGURE " + param.Position[row, column]);
+            //Debug.WriteLine("-----------------------------------------------------------");
 
+            if (param.FirstClick == null && (param.SecondClick == null) &&  param.Position[row, column] == figure)
+            {
+
+                //Debug.WriteLine("FIGURE PICKED " + figure);
+                //Debug.WriteLine("WARTOŚĆ POLA W PICKED FIGURE " + param.Position[row, column]);
+                //Debug.WriteLine("-----------------------------------------------------------");
+                HelpMoveClear();
+
+                param.FirstClick = button;
+                param.CurrentRow = row;
+                param.CurrentColumn = column;
+                    
+
+                LegalMoves(row, column, figureAttacked);
+
+                param.PickedFigure = param.Position[param.CurrentRow,param.CurrentColumn];
+                
+            }
+        }
 
     }
 }

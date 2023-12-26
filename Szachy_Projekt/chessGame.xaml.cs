@@ -49,6 +49,7 @@ namespace Szachy_Projekt
         public static figureValue[] WhitePiecesAttacked { get; set; }
         public static figureValue[] BlackPieces { get; set; }
         public static figureValue[] WhitePieces { get; set; }
+        public static figureValue PickedFigure {  get; set; }
         public static Button Button { get; set; }
         public static Button FirstClick { get; set; }
         public static Button SecondClick { get; set; }
@@ -95,32 +96,45 @@ namespace Szachy_Projekt
             Button button = (Button)sender;
             int column = Grid.GetColumn(button);
             int row = Grid.GetRow(button);
+        
+            Knight whiteKnight = new Knight();
+            Bishop whiteBishop = new Bishop();
+            Knight blackKnight = new Knight();
+            Bishop blackBishop = new Bishop();
 
-            //figureClass figure = new figureClass();
 
+            
 
-
-            //figure.BlackKnightMove(row, column, button);
-           
-           
-                    
-                
-            if(param.GlobalTurn == true)
+            if (param.GlobalTurn == true)
             {
-                Knight whiteKnight = new Knight();
-                whiteKnight.FigureMove(row, column, button, figureValue.WhiteKnight, Images.WhiteKnight, param.BlackPiecesAttacked);
+                whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
+                whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
+               
 
-                Bishop whiteBishop = new Bishop();
-                whiteBishop.FigureMove(row, column, button, figureValue.WhiteBishop, Images.WhiteBishop, param.BlackPiecesAttacked);
+                if (param.PickedFigure == figureValue.WhiteKnight)
+                {
+                    whiteKnight.FigureMove(row, column, button, figureValue.WhiteKnight, Images.WhiteKnight, param.BlackPiecesAttacked, param.WhitePieces);
+                }
+                else if(param.PickedFigure == figureValue.WhiteBishop)
+                {
+                    whiteBishop.FigureMove(row, column, button, figureValue.WhiteBishop, Images.WhiteBishop, param.BlackPiecesAttacked, param.WhitePieces);
+                }
+
             }
             else if(param.GlobalTurn == false)
             {
-                
-                Knight blackKnight = new Knight();
-                blackKnight.FigureMove(row, column, button, figureValue.BlackKnight, Images.BlackKnight, param.WhitePiecesAttacked);
+                blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
+                blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
 
-                Bishop blackBishop = new Bishop();
-                blackBishop.FigureMove(row, column, button, figureValue.BlackBishop, Images.BlackBishop, param.WhitePiecesAttacked);
+
+                if (param.PickedFigure == figureValue.BlackKnight)
+                {
+                    blackKnight.FigureMove(row, column, button, figureValue.BlackKnight, Images.BlackKnight, param.WhitePiecesAttacked, param.BlackPieces);
+                }
+                else if(param.PickedFigure == figureValue.BlackBishop)
+                {
+                    blackBishop.FigureMove(row, column, button, figureValue.BlackBishop, Images.BlackBishop, param.WhitePiecesAttacked, param.BlackPieces);
+                }    
             }
 
         }

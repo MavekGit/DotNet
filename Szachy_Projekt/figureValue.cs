@@ -8,7 +8,7 @@ namespace Szachy_Projekt
 {
     public enum figureValue
     {
-
+        NonePicked = -1,
         Empty,
         BlackPawn,
         BlackKnight,

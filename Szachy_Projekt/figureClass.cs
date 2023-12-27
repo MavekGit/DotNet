@@ -67,11 +67,12 @@ namespace Szachy_Projekt
                 Debug.WriteLine("FIGURE MOVE IF FUNCTION " + figure);
 
                 param.SecondClick = button;
-
-                param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
                 param.Buttons[row, column].Content = new System.Windows.Controls.Image { Source = figureImage }; ;
                 param.Position[row, column] = figure;
-                param.Position[param.CurrentRow, param.CurrentColumn] = 0;
+
+                param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
+                param.Position[param.CurrentRow, param.CurrentColumn] = figureValue.Empty;
+               
 
                 param.FirstClick = null;
                 param.SecondClick = null;
@@ -106,14 +107,30 @@ namespace Szachy_Projekt
 
                 Knight whiteKnight = new Knight();
                 Bishop whiteBishop = new Bishop();
+                Rook whiteRook = new Rook();
+                Queen whiteQueen = new Queen();
+                Pawn whitePawn = new Pawn();
+
                 Knight blackKnight = new Knight();
                 Bishop blackBishop = new Bishop();
+                Rook blackRook = new Rook();
+                Queen blackQueen = new Queen();
+                Pawn blackPawn = new Pawn();
 
 
                 whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
                 whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
+                whiteRook.FigurePicked(row, column, button, figureValue.WhiteRook, param.BlackPiecesAttacked);
+                whiteQueen.FigurePicked(row, column, button, figureValue.WhiteQueen, param.BlackPiecesAttacked);
+                whitePawn.FigurePicked(row, column, button, figureValue.WhitePawn, param.BlackPiecesAttacked);
+                
+                               
                 blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
                 blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
+                blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
+                blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
+                blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
+
                 //figure = param.Position[row, column];
 
                 //FigurePicked(row,column,button,figure,figureAttacked);

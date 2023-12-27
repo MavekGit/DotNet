@@ -99,17 +99,23 @@ namespace Szachy_Projekt
         
             Knight whiteKnight = new Knight();
             Bishop whiteBishop = new Bishop();
+            Rook whiteRook = new Rook();
+            Queen whiteQueen = new Queen();
+            Pawn whitePawn = new Pawn();
+
             Knight blackKnight = new Knight();
             Bishop blackBishop = new Bishop();
-
-
-            
+            Rook blackRook = new Rook();
+            Queen blackQueen = new Queen();
+            Pawn blackPawn = new Pawn();
 
             if (param.GlobalTurn == true)
             {
                 whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
                 whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
-               
+                whiteRook.FigurePicked(row, column, button, figureValue.WhiteRook, param.BlackPiecesAttacked);
+                whiteQueen.FigurePicked(row, column, button, figureValue.WhiteQueen, param.BlackPiecesAttacked);
+                whitePawn.FigurePicked(row, column, button, figureValue.WhitePawn, param.BlackPiecesAttacked);
 
                 if (param.PickedFigure == figureValue.WhiteKnight)
                 {
@@ -119,12 +125,27 @@ namespace Szachy_Projekt
                 {
                     whiteBishop.FigureMove(row, column, button, figureValue.WhiteBishop, Images.WhiteBishop, param.BlackPiecesAttacked, param.WhitePieces);
                 }
+                else if (param.PickedFigure == figureValue.WhiteRook)
+                {
+                    whiteRook.FigureMove(row, column, button, figureValue.WhiteRook, Images.WhiteRook, param.BlackPiecesAttacked, param.WhitePieces);
+                }
+                else if (param.PickedFigure == figureValue.WhiteQueen)
+                {
+                    whiteQueen.FigureMove(row, column, button, figureValue.WhiteQueen, Images.WhiteQueen, param.BlackPiecesAttacked, param.WhitePieces);
+                }
+                else if (param.PickedFigure == figureValue.WhitePawn)
+                {
+                    whitePawn.FigureMove(row, column, button, figureValue.WhitePawn, Images.WhitePawn, param.BlackPiecesAttacked, param.WhitePieces);
+                }
 
             }
             else if(param.GlobalTurn == false)
             {
                 blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
                 blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
+                blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
+                blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
+                blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
 
 
                 if (param.PickedFigure == figureValue.BlackKnight)
@@ -134,7 +155,20 @@ namespace Szachy_Projekt
                 else if(param.PickedFigure == figureValue.BlackBishop)
                 {
                     blackBishop.FigureMove(row, column, button, figureValue.BlackBishop, Images.BlackBishop, param.WhitePiecesAttacked, param.BlackPieces);
-                }    
+                }
+                else if (param.PickedFigure == figureValue.BlackRook)
+                {
+                    blackRook.FigureMove(row, column, button, figureValue.BlackRook, Images.BlackRook, param.WhitePiecesAttacked, param.BlackPieces);
+                }
+                else if (param.PickedFigure == figureValue.BlackQueen)
+                {
+                    blackQueen.FigureMove(row, column, button, figureValue.BlackQueen, Images.BlackQueen, param.WhitePiecesAttacked, param.BlackPieces);
+                }
+                else if (param.PickedFigure == figureValue.BlackPawn)
+                {
+                    blackPawn.FigureMove(row, column, button, figureValue.BlackPawn, Images.BlackPawn, param.WhitePiecesAttacked, param.BlackPieces);
+                }
+
             }
 
         }

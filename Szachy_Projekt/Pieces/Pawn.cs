@@ -14,6 +14,7 @@ namespace Szachy_Projekt.Pieces
         {
             int futureRow = 0;
             int futureColumn = 0;
+            int BreakLoop = 0;
 
             int startRowWhite = row - 3, startRowBlack = row + 3, otherRowWhite = row - 2, otherRowBlack = row + 2;
             int[] pawnColumnMoves = { -1, 1 };
@@ -30,10 +31,13 @@ namespace Szachy_Projekt.Pieces
                     for (int i = row, j = column; i < startRowBlack; i++)
                     {
 
-                        if (((i < 0 || i > 7) || (j < 0 || j > 7)) || param.Position[i, j] != figureValue.Empty)
-                        {
+                        if (((i < 0 || i > 7) || (j < 0 || j > 7))  || param.Position[i, j] != figureValue.Empty || param.Position[row+1, column] != figureValue.Empty)
+                        {   
+
                             continue;
                         }
+                        
+
 
                         Debug.WriteLine(i + " " + j);
                         futureRow = i;
@@ -118,7 +122,7 @@ namespace Szachy_Projekt.Pieces
 
 
             }
-
+            BreakLoop = 0;
             // White Pawn
             if (figureAttacked == param.BlackPiecesAttacked)
             {
@@ -129,8 +133,9 @@ namespace Szachy_Projekt.Pieces
                     for (int i = row, j = column; i > startRowWhite; i--)
                     {
 
-                        if (((i < 0 || i > 7) || (j < 0 || j > 7)) || param.Position[i, j] != figureValue.Empty)
+                        if (((i < 0 || i > 7) || (j < 0 || j > 7)) || param.Position[i, j] != figureValue.Empty || param.Position[row - 1, column ] != figureValue.Empty)
                         {
+
                             continue;
                         }
 
@@ -189,7 +194,7 @@ namespace Szachy_Projekt.Pieces
                 //    }
                 //}
                 
-                if (((row + 1 >= 0 && row + 1 <= 7) && (column - 1 >= 0 && column - 1 <= 7)))    
+                if (((row - 1 >= 0 && row - 1 <= 7) && (column - 1 >= 0 && column - 1 <= 7)))    
                 {
 
                     if (figureAttacked.Contains(param.Position[row - 1, column - 1]))
@@ -204,7 +209,7 @@ namespace Szachy_Projekt.Pieces
 
                 }
 
-                if (((row + 1 >= 0 && row + 1 <= 7) && (column + 1 >= 0 && column + 1 <= 7)))
+                if (((row - 1 >= 0 && row - 1 <= 7) && (column + 1 >= 0 && column + 1 <= 7)))
                 {
                     
                     if (figureAttacked.Contains(param.Position[row - 1, column + 1]))

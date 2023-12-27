@@ -102,12 +102,14 @@ namespace Szachy_Projekt
             Rook whiteRook = new Rook();
             Queen whiteQueen = new Queen();
             Pawn whitePawn = new Pawn();
+            King whiteKing = new King();
 
             Knight blackKnight = new Knight();
             Bishop blackBishop = new Bishop();
             Rook blackRook = new Rook();
             Queen blackQueen = new Queen();
             Pawn blackPawn = new Pawn();
+            King blackKing = new King();
 
             if (param.GlobalTurn == true)
             {
@@ -116,6 +118,7 @@ namespace Szachy_Projekt
                 whiteRook.FigurePicked(row, column, button, figureValue.WhiteRook, param.BlackPiecesAttacked);
                 whiteQueen.FigurePicked(row, column, button, figureValue.WhiteQueen, param.BlackPiecesAttacked);
                 whitePawn.FigurePicked(row, column, button, figureValue.WhitePawn, param.BlackPiecesAttacked);
+                whiteKing.FigurePicked(row, column, button, figureValue.WhiteKing, param.BlackPiecesAttacked);
 
                 if (param.PickedFigure == figureValue.WhiteKnight)
                 {
@@ -137,6 +140,10 @@ namespace Szachy_Projekt
                 {
                     whitePawn.FigureMove(row, column, button, figureValue.WhitePawn, Images.WhitePawn, param.BlackPiecesAttacked, param.WhitePieces);
                 }
+                else if (param.PickedFigure == figureValue.WhiteKing)
+                {
+                    whitePawn.FigureMove(row, column, button, figureValue.WhiteKing, Images.WhiteKing, param.BlackPiecesAttacked, param.WhitePieces);
+                }
 
             }
             else if(param.GlobalTurn == false)
@@ -146,7 +153,7 @@ namespace Szachy_Projekt
                 blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
                 blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
                 blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
-
+                blackKing.FigurePicked(row, column, button, figureValue.BlackKing, param.WhitePiecesAttacked);
 
                 if (param.PickedFigure == figureValue.BlackKnight)
                 {
@@ -167,6 +174,10 @@ namespace Szachy_Projekt
                 else if (param.PickedFigure == figureValue.BlackPawn)
                 {
                     blackPawn.FigureMove(row, column, button, figureValue.BlackPawn, Images.BlackPawn, param.WhitePiecesAttacked, param.BlackPieces);
+                }
+                else if (param.PickedFigure == figureValue.BlackKing)
+                {
+                    blackKing.FigureMove(row, column, button, figureValue.BlackKing, Images.BlackKing, param.WhitePiecesAttacked, param.BlackPieces);
                 }
 
             }

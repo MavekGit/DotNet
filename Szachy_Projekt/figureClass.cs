@@ -110,26 +110,28 @@ namespace Szachy_Projekt
                 Rook whiteRook = new Rook();
                 Queen whiteQueen = new Queen();
                 Pawn whitePawn = new Pawn();
+                King whiteKing = new King();
 
                 Knight blackKnight = new Knight();
                 Bishop blackBishop = new Bishop();
                 Rook blackRook = new Rook();
                 Queen blackQueen = new Queen();
                 Pawn blackPawn = new Pawn();
-
+                King blackKing = new King();
 
                 whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
                 whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
                 whiteRook.FigurePicked(row, column, button, figureValue.WhiteRook, param.BlackPiecesAttacked);
                 whiteQueen.FigurePicked(row, column, button, figureValue.WhiteQueen, param.BlackPiecesAttacked);
                 whitePawn.FigurePicked(row, column, button, figureValue.WhitePawn, param.BlackPiecesAttacked);
-                
-                               
+                whiteKing.FigurePicked(row, column, button, figureValue.WhiteKing, param.BlackPiecesAttacked);
+
                 blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
                 blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
                 blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
                 blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
                 blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
+                blackKing.FigurePicked(row, column, button, figureValue.BlackKing, param.WhitePiecesAttacked);
 
                 //figure = param.Position[row, column];
 

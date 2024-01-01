@@ -56,16 +56,18 @@ namespace Szachy_Projekt
         public static int CurrentRow { get; set; }
         public static int CurrentColumn { get; set; }
         public static bool GlobalTurn {  get; set; }
+        public static bool KingAttackCheck { get; set; }
 
         static param()
         {
         
-            }
+        }
 
         public static void Initialize()
         {
 
             GlobalTurn = true;
+            KingAttackCheck = false;
             BlackPiecesAttacked = [figureValue.BlackPawn, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackRook, figureValue.BlackQueen];
             WhitePiecesAttacked = [figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteRook, figureValue.WhiteQueen];
 
@@ -110,6 +112,9 @@ namespace Szachy_Projekt
             Queen blackQueen = new Queen();
             Pawn blackPawn = new Pawn();
             King blackKing = new King();
+
+            Debug.WriteLine("Rząd, Kolumna, Przycisk NORMAL MOVE" + row + " " + column + " " + button);
+
 
             if (param.GlobalTurn == true)
             {

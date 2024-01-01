@@ -54,8 +54,128 @@ namespace Szachy_Projekt
             {
                 param.Buttons[futureRow, futureColumn].Background = Brushes.Red;
             }
+
+            // CO TRZEBA ZROBIĆ
+            // JEŻELI KING ATTACK CHECK TO ZAPISUJEMY WSZYSTKIE FUTURE ROW I FUTURE COLUMN I SPRAWDZAMY CZY ZNAJDUJE SIĘ TAM KRÓL TO WTEDY PODKREŚLAMY NA ŻÓŁTO JAK PAPIEŻ XD
+
+            //if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)) && param.GlobalTurn == true && param.Position[futureRow, futureColumn] == figureValue.BlackKing)
+            //{
+            //    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+            //}
+            //else if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)) && param.GlobalTurn == false && param.Position[futureRow, futureColumn] == figureValue.WhiteKing)
+            //{
+            //    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+            //}
         }
-       
+
+        
+        protected void isKingChecked(Button button)
+        {
+            param.KingAttackCheck = true;
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    int row = i;
+                    int column = j;
+
+                    // can be wrong
+                    //param.FirstClick = null;
+
+                    Knight whiteKnight = new Knight();
+                    Bishop whiteBishop = new Bishop();
+                    Rook whiteRook = new Rook();
+                    Queen whiteQueen = new Queen();
+                    Pawn whitePawn = new Pawn();
+                    King whiteKing = new King();
+
+                    Knight blackKnight = new Knight();
+                    Bishop blackBishop = new Bishop();
+                    Rook blackRook = new Rook();
+                    Queen blackQueen = new Queen();
+                    Pawn blackPawn = new Pawn();
+                    King blackKing = new King();
+
+                    //Debug.WriteLine("Rząd, Kolumna, Przycisk IS KING ATTACKED  " + row + " XD " + column + " XD " + param.Position[row,column]);
+
+                    if(param.GlobalTurn == true)
+                    {
+
+                        if (param.Position[row,column] == figureValue.WhiteBishop)
+                        {
+                            whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
+                        }
+                        else if (param.Position[row, column] == figureValue.WhiteKnight)
+                        {
+                            whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
+                        }
+                        else if (param.Position[row, column] == figureValue.WhiteRook)
+                        {
+                            whiteRook.FigurePicked(row, column, button, figureValue.WhiteRook, param.BlackPiecesAttacked);
+                        }
+                        else if (param.Position[row, column] == figureValue.WhiteQueen)
+                        {
+                            whiteQueen.FigurePicked(row, column, button, figureValue.WhiteQueen, param.BlackPiecesAttacked);
+                        }
+                        //else if (param.Position[row, column] == figureValue.WhiteKing)
+                        //{
+                        //    whiteKing.FigurePicked(row, column, button, figureValue.WhiteKing, param.BlackPiecesAttacked);
+                        //}
+                        else if (param.Position[row, column] == figureValue.WhitePawn)
+                        {
+                            whitePawn.FigurePicked(row, column, button, figureValue.WhitePawn, param.BlackPiecesAttacked);
+                        }
+
+
+                    }
+                    else if(param.GlobalTurn == false)
+                    {
+
+                        if (param.Position[row, column] == figureValue.BlackBishop)
+                        {
+                            blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
+                        }
+                        else if (param.Position[row, column] == figureValue.BlackKnight)
+                        {
+                            blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
+                        }
+                        else if (param.Position[row, column] == figureValue.BlackRook)
+                        {
+                            blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
+                        }
+                        else if (param.Position[row, column] == figureValue.BlackQueen)
+                        {
+                            blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
+                        }
+                        //else if (param.Position[row, column] == figureValue.BlackKing)
+                        //{
+                        //    blackKing.FigurePicked(row, column, button, figureValue.BlackKing, param.WhitePiecesAttacked);
+                        //}
+                        else if (param.Position[row, column] == figureValue.BlackPawn)
+                        {
+                            blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
+                        }
+
+                        //blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
+                        //blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
+                        //blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
+                        //blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
+                        //blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
+                        //blackKing.FigurePicked(row, column, button, figureValue.BlackKing, param.WhitePiecesAttacked);
+
+
+                    }
+
+
+                }
+            }
+
+            param.KingAttackCheck = false;
+
+        }
+
+
         public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked, figureValue[] figureColor)
         {
 
@@ -72,7 +192,10 @@ namespace Szachy_Projekt
 
                 param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
                 param.Position[param.CurrentRow, param.CurrentColumn] = figureValue.Empty;
-               
+
+
+                // Must check what is attacked 
+                isKingChecked(button);
 
                 param.FirstClick = null;
                 param.SecondClick = null;
@@ -160,10 +283,10 @@ namespace Szachy_Projekt
             //Debug.WriteLine("WARTOŚĆ POLA PRZED PICKED FIGURE " + param.Position[row, column]);
             //Debug.WriteLine("-----------------------------------------------------------");
 
-            if (param.FirstClick == null && (param.SecondClick == null) &&  param.Position[row, column] == figure)
+            if ((param.FirstClick == null && (param.SecondClick == null) &&  param.Position[row, column] == figure) || param.KingAttackCheck == true)
             {
 
-                //Debug.WriteLine("FIGURE PICKED " + figure);
+                Debug.WriteLine("FIGURE PICKED " + figure);
                 //Debug.WriteLine("WARTOŚĆ POLA W PICKED FIGURE " + param.Position[row, column]);
                 //Debug.WriteLine("-----------------------------------------------------------");
                 HelpMoveClear();

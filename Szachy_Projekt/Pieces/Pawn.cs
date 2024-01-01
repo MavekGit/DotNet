@@ -25,7 +25,7 @@ namespace Szachy_Projekt.Pieces
             if (figureAttacked == param.WhitePiecesAttacked)
             {
 
-                if (row == 1)
+                if (row == 1 && param.KingAttackCheck == false)
                 {
 
                     for (int i = row, j = column; i < startRowBlack; i++)
@@ -50,7 +50,7 @@ namespace Szachy_Projekt.Pieces
 
                 }
                 
-                else
+                else if(row != 1 && param.KingAttackCheck == false)
                 {
                     for (int i = row, j = column; i < otherRowBlack; i++)
                     {
@@ -127,7 +127,7 @@ namespace Szachy_Projekt.Pieces
             if (figureAttacked == param.BlackPiecesAttacked)
             {
 
-                if (row == 6)
+                if (row == 6 && param.KingAttackCheck == false)
                 {
 
                     for (int i = row, j = column; i > startRowWhite; i--)
@@ -150,7 +150,7 @@ namespace Szachy_Projekt.Pieces
                     }
 
                 }
-                else
+                else if(row != 6 && param.KingAttackCheck == false)
                 {
                     for (int i = row, j = column; i > otherRowWhite; i--)
                     {

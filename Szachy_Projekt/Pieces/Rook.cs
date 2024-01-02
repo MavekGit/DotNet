@@ -17,10 +17,10 @@ namespace Szachy_Projekt.Pieces
             int BreakLoop = 0;
             
 
-            for (int i = row, j = column; i > -7 ; i--)
+            for (int i = row - 1, j = column; i > -7 ; i--)
             {
             
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }
@@ -41,10 +41,10 @@ namespace Szachy_Projekt.Pieces
 
             BreakLoop = 0;
 
-            for (int i = row, j = column; i < 8 ; i++)
+            for (int i = row + 1, j = column; i < 8 ; i++)
             {
                
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }
@@ -64,10 +64,10 @@ namespace Szachy_Projekt.Pieces
             BreakLoop = 0;
 
             
-            for (int i = row, j = column; j < 8; j++)
+            for (int i = row, j = column + 1; j < 8; j++)
             {
             
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }
@@ -86,11 +86,11 @@ namespace Szachy_Projekt.Pieces
 
             BreakLoop = 0;
 
-            for (int i = row, j = column;j > -7; j--)
+            for (int i = row, j = column - 1;j > -7; j--)
             {
                
 
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }

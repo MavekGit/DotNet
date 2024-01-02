@@ -56,9 +56,9 @@ namespace Szachy_Projekt.Pieces
                     }
                 }
             }
-            Debug.WriteLine("----------------------------------");
-            Debug.WriteLine(KingRow + " " +  KingColumn);
-            Debug.WriteLine("----------------------------------");
+            //Debug.WriteLine("----------------------------------");
+            //Debug.WriteLine(KingRow + " " +  KingColumn);
+            //Debug.WriteLine("----------------------------------");
 
             int[] kingMoves = { -1, 0, 1, };
             int iterator = 0;
@@ -117,6 +117,12 @@ namespace Szachy_Projekt.Pieces
                             }
                         }
 
+                        if (param.SquaresInCheck.Any(square => futureRow == square.Item1 && futureColumn == square.Item2))
+                        {
+                            isPositionValid = false;
+                        }
+
+
                         if (isPositionValid)
                         {
                             ShowLegalMoves(futureRow, futureColumn, figureAttacked);
@@ -125,6 +131,9 @@ namespace Szachy_Projekt.Pieces
                     }
                 }
             }
+
+
+
 
 
         }

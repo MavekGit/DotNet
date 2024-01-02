@@ -69,17 +69,18 @@ namespace Szachy_Projekt
             if(param.KingAttackCheck == true && (futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8))
             {
 
-                if (param.GlobalTurn == true && param.Position[futureRow, futureColumn] == figureValue.BlackKing)
-                {
+                //if (param.GlobalTurn == true && param.Position[futureRow, futureColumn] == figureValue.BlackKing)
+                //{
 
-                    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+                //    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+               
 
-                }
-                else if (param.GlobalTurn == false && param.Position[futureRow, futureColumn] == figureValue.WhiteKing)
-                {
-                    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
-
-                }
+                //}
+                //else if (param.GlobalTurn == false && param.Position[futureRow, futureColumn] == figureValue.WhiteKing)
+                //{
+                //    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+                
+                //}
 
                 param.SquaresInCheck.Add(new Tuple<int, int>(futureRow, futureColumn));
 
@@ -180,14 +181,6 @@ namespace Szachy_Projekt
                             blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
                         }
 
-                        //blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
-                        //blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
-                        //blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
-                        //blackQueen.FigurePicked(row, column, button, figureValue.BlackQueen, param.WhitePiecesAttacked);
-                        //blackPawn.FigurePicked(row, column, button, figureValue.BlackPawn, param.WhitePiecesAttacked);
-                        //blackKing.FigurePicked(row, column, button, figureValue.BlackKing, param.WhitePiecesAttacked);
-
-
                     }
 
 
@@ -216,15 +209,18 @@ namespace Szachy_Projekt
                     if (param.Position[R, C] == figureValue.WhiteKing)
                     {
                         param.Buttons[R, C].Background = Brushes.Yellow;
+                        param.WhiteKingInDanger = true;
                     }
                     else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 == 0)
                     {
                         param.Buttons[R, C].Background = Brushes.Gray;
+                        param.WhiteKingInDanger = false;
                         Debug.WriteLine(" HELLO DARKNESS MY OLD FRIEND ");
                     }
                     else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 != 0)
                     {
                         param.Buttons[R, C].Background = Brushes.White;
+                        param.WhiteKingInDanger = false;
                         Debug.WriteLine(" HELLO WHITENESS MY OLD FRIEND ");
                     }
                 }
@@ -242,14 +238,17 @@ namespace Szachy_Projekt
                     if (param.Position[R, C] == figureValue.BlackKing)
                     {
                         param.Buttons[R, C].Background = Brushes.Yellow;
+                        param.BlackKingInDanger = true;
                     }
                     else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 == 0)
                     {
                         param.Buttons[R, C].Background = Brushes.Gray;
+                        param.BlackKingInDanger = false;
                     }
                     else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 != 0)
                     {
                         param.Buttons[R, C].Background = Brushes.White;
+                        param.BlackKingInDanger = false;
                     }
                 }
             }
@@ -265,6 +264,7 @@ namespace Szachy_Projekt
             if ((param.FirstClick != null) && (param.SecondClick == null) && ((param.Buttons[row, column].Content is System.Windows.Controls.Image image && image.Source == Images.Dot || param.Buttons[row, column].Background == Brushes.Red )))
             {
                 Debug.WriteLine("FIGURE MOVE IF FUNCTION " + figure);
+
 
                 param.SecondClick = button;
                 param.Buttons[row, column].Content = new System.Windows.Controls.Image { Source = figureImage }; ;

@@ -20,14 +20,14 @@ namespace Szachy_Projekt.Pieces
             int BreakLoop = 0;
             //Debug.WriteLine("ROW " + row + "  COLUMN " + column);
 
-            for(int i = row, j = column; i > -7 && j > -7; i--,j--)
+            for(int i = row -1, j = column -1; i > -7 && j > -7; i--,j--)
             {
                 //for(int j = column; j > -7; j--)
                 //{
                 //Debug.WriteLine(row+i);
                 //Debug.WriteLine(column + j);
 
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }
@@ -48,12 +48,12 @@ namespace Szachy_Projekt.Pieces
 
             BreakLoop = 0;
 
-            for (int i = row, j = column; i < 8 && j < 8; i++, j++)
+            for (int i = row + 1, j = column + 1; i < 8 && j < 8; i++, j++)
             {
                 //Debug.WriteLine(row + " " + i);
                 //Debug.WriteLine(column + " " + j);
 
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }
@@ -75,13 +75,13 @@ namespace Szachy_Projekt.Pieces
             BreakLoop = 0;
 
             // 7 2
-            for (int i = row, j = column; i > -7 && j < 8; i--, j++)
+            for (int i = row - 1, j = column + 1; i > -7 && j < 8; i--, j++)
             {
                 //Debug.WriteLine(i);
                 //Debug.WriteLine(j);
                 //Debug.WriteLine("BREAK LOOP" + " " + BreakLoop);
 
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }
@@ -104,14 +104,14 @@ namespace Szachy_Projekt.Pieces
 
             BreakLoop = 0;
 
-            for (int i = row, j = column; i < 8 && j > -7; i++, j--)
+            for (int i = row + 1, j = column - 1; i < 8 && j > -7; i++, j--)
             {
                 //Debug.WriteLine(row + " " + i);
                 //Debug.WriteLine(column + " " + j);
                 //Debug.WriteLine("BREAK LOOP" + " " + BreakLoop);
 
 
-                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 2)
+                if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
                     continue;
                 }

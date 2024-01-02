@@ -57,6 +57,7 @@ namespace Szachy_Projekt
         public static int CurrentColumn { get; set; }
         public static bool GlobalTurn {  get; set; }
         public static bool KingAttackCheck { get; set; }
+        public static List<Tuple <int,int>> SquaresInCheck { get; set; }
 
         static param()
         {
@@ -73,6 +74,9 @@ namespace Szachy_Projekt
 
             BlackPieces = [figureValue.BlackPawn, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackRook, figureValue.BlackQueen, figureValue.BlackKing];
             WhitePieces = [figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteRook, figureValue.WhiteQueen, figureValue.WhiteKing];
+
+            SquaresInCheck = new List<Tuple<int, int>>();
+
         }
     }
 

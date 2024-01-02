@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using Szachy_Projekt.Pieces;
 
@@ -28,6 +29,16 @@ namespace Szachy_Projekt
                     {
                         param.Buttons[i, j].Background = Brushes.White;
                     }
+
+                    if (param.Buttons[i, j].Background == Brushes.Yellow && (i + j) % 2 == 0 && (param.Position[i,j] == figureValue.Empty))
+                    {
+                        param.Buttons[i, j].Background = Brushes.Gray;
+                    }
+                    else if (param.Buttons[i, j].Background == Brushes.Yellow && (i + j) % 2 != 0 && (param.Position[i, j] == figureValue.Empty))
+                    {
+                        param.Buttons[i, j].Background = Brushes.White;
+                    }
+
 
                     if (param.Buttons[i, j].Content is System.Windows.Controls.Image image && image.Source == Images.Dot)
                     {
@@ -55,23 +66,35 @@ namespace Szachy_Projekt
                 param.Buttons[futureRow, futureColumn].Background = Brushes.Red;
             }
 
+            if(param.KingAttackCheck == true && (futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8))
+            {
+
+                if (param.GlobalTurn == true && param.Position[futureRow, futureColumn] == figureValue.BlackKing)
+                {
+
+                    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+
+                }
+                else if (param.GlobalTurn == false && param.Position[futureRow, futureColumn] == figureValue.WhiteKing)
+                {
+                    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
+
+                }
+
+                param.SquaresInCheck.Add(new Tuple<int, int>(futureRow, futureColumn));
+
+            }
             // CO TRZEBA ZROBIĆ
             // JEŻELI KING ATTACK CHECK TO ZAPISUJEMY WSZYSTKIE FUTURE ROW I FUTURE COLUMN I SPRAWDZAMY CZY ZNAJDUJE SIĘ TAM KRÓL TO WTEDY PODKREŚLAMY NA ŻÓŁTO JAK PAPIEŻ XD
 
-            //if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)) && param.GlobalTurn == true && param.Position[futureRow, futureColumn] == figureValue.BlackKing)
-            //{
-            //    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
-            //}
-            //else if (((futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8)) && param.GlobalTurn == false && param.Position[futureRow, futureColumn] == figureValue.WhiteKing)
-            //{
-            //    param.Buttons[futureRow, futureColumn].Background = Brushes.Yellow;
-            //}
         }
 
         
+
         protected void isKingChecked(Button button)
         {
             param.KingAttackCheck = true;
+            param.SquaresInCheck.Clear();
 
             for (int i = 0; i < 8; i++)
             {
@@ -175,6 +198,63 @@ namespace Szachy_Projekt
 
         }
 
+        protected void isKingInCheckUpdate(figureValue figure)
+        {
+           
+
+            if (param.BlackPieces.Contains(figure))
+            {
+
+                foreach (Tuple<int, int> square in param.SquaresInCheck)
+                {
+                    int R = square.Item1;
+                    int C = square.Item2;
+
+                    Debug.WriteLine(" TO JEST Row  " + R + " TO JEST Column " + C );
+                    //param.Buttons[R, C].Background = Brushes.Blue;
+
+                    if (param.Position[R, C] == figureValue.WhiteKing)
+                    {
+                        param.Buttons[R, C].Background = Brushes.Yellow;
+                    }
+                    else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 == 0)
+                    {
+                        param.Buttons[R, C].Background = Brushes.Gray;
+                        Debug.WriteLine(" HELLO DARKNESS MY OLD FRIEND ");
+                    }
+                    else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 != 0)
+                    {
+                        param.Buttons[R, C].Background = Brushes.White;
+                        Debug.WriteLine(" HELLO WHITENESS MY OLD FRIEND ");
+                    }
+                }
+
+            }
+            else if(param.WhitePieces.Contains(figure))
+            {
+                foreach (Tuple<int, int> square in param.SquaresInCheck)
+                {
+                    int R = square.Item1;
+                    int C = square.Item2;
+
+                    //param.Buttons[R, C].Background = Brushes.Green;
+
+                    if (param.Position[R, C] == figureValue.BlackKing)
+                    {
+                        param.Buttons[R, C].Background = Brushes.Yellow;
+                    }
+                    else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 == 0)
+                    {
+                        param.Buttons[R, C].Background = Brushes.Gray;
+                    }
+                    else if (param.Buttons[R, C].Background == Brushes.Yellow && (R + C) % 2 != 0)
+                    {
+                        param.Buttons[R, C].Background = Brushes.White;
+                    }
+                }
+            }
+
+        }
 
         public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked, figureValue[] figureColor)
         {
@@ -196,6 +276,7 @@ namespace Szachy_Projekt
 
                 // Must check what is attacked 
                 isKingChecked(button);
+                isKingInCheckUpdate(figure);
 
                 param.FirstClick = null;
                 param.SecondClick = null;
@@ -204,7 +285,9 @@ namespace Szachy_Projekt
 
                 if (param.BlackPieces.Contains(figure))
                 {
+
                     param.GlobalTurn = true;
+
                 }
                 else if(param.WhitePieces.Contains(figure))
                 {

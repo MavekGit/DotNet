@@ -86,6 +86,9 @@ namespace Szachy_Projekt
         }
     }
 
+    
+
+
 
 
     public partial class chessGame : Page
@@ -98,6 +101,7 @@ namespace Szachy_Projekt
             param.Initialize();
 
             generateChessboard();
+
 
         }
 
@@ -125,9 +129,13 @@ namespace Szachy_Projekt
 
             Debug.WriteLine("Rząd, Kolumna, Przycisk NORMAL MOVE" + row + " " + column + " " + button);
 
+         
+            
 
             if (param.GlobalTurn == true)
             {
+                
+
                 whiteBishop.FigurePicked(row, column, button, figureValue.WhiteBishop, param.BlackPiecesAttacked);
                 whiteKnight.FigurePicked(row, column, button, figureValue.WhiteKnight, param.BlackPiecesAttacked);
                 whiteRook.FigurePicked(row, column, button, figureValue.WhiteRook, param.BlackPiecesAttacked);
@@ -163,6 +171,8 @@ namespace Szachy_Projekt
             }
             else if(param.GlobalTurn == false)
             {
+           
+
                 blackBishop.FigurePicked(row, column, button, figureValue.BlackBishop, param.WhitePiecesAttacked);
                 blackKnight.FigurePicked(row, column, button, figureValue.BlackKnight, param.WhitePiecesAttacked);
                 blackRook.FigurePicked(row, column, button, figureValue.BlackRook, param.WhitePiecesAttacked);
@@ -204,7 +214,7 @@ namespace Szachy_Projekt
 
         private void generateChessboard()
         {
-            
+            UGrid.Children.Clear();
 
             Button[,] buttons = new Button[8,8];
             figureValue[,] position = new figureValue[8, 8];
@@ -315,7 +325,12 @@ namespace Szachy_Projekt
             param.Buttons = buttons;
         }
 
-       
+        private void ResetGameBtn(object sender, RoutedEventArgs e)
+        {
+            
 
+            param.Initialize();
+            generateChessboard();
+        }
     }
 }

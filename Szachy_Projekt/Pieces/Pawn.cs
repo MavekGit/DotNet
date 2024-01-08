@@ -96,7 +96,7 @@ namespace Szachy_Projekt.Pieces
 
                 if (((row + 1 >= 0 && row + 1 <= 7) && (column - 1 >= 0 && column - 1 <= 7)))
                 {
-                    if (figureAttacked.Contains(param.Position[row + 1, column - 1]) || param.Position[row + 1, column - 1] == figureValue.WhiteKing)
+                    if ((figureAttacked.Contains(param.Position[row + 1, column - 1]) || param.Position[row + 1, column - 1] == figureValue.WhiteKing) || param.KingAttackCheck == true)
                     {
                         futureRow = row + 1;
                         futureColumn = column - 1;
@@ -109,7 +109,7 @@ namespace Szachy_Projekt.Pieces
                 }
                 if (((row + 1 >= 0 && row + 1 <= 7) && (column + 1 >= 0 && column + 1 <= 7)))
                 {
-                if (figureAttacked.Contains(param.Position[row + 1, column + 1]) || param.Position[row + 1, column + 1] == figureValue.WhiteKing)
+                if ((figureAttacked.Contains(param.Position[row + 1, column + 1]) || param.Position[row + 1, column + 1] == figureValue.WhiteKing) || param.KingAttackCheck == true)
 
                     {
                         futureRow = row + 1;
@@ -197,7 +197,7 @@ namespace Szachy_Projekt.Pieces
                 if (((row - 1 >= 0 && row - 1 <= 7) && (column - 1 >= 0 && column - 1 <= 7)))    
                 {
 
-                    if (figureAttacked.Contains(param.Position[row - 1, column - 1]) || param.Position[row - 1, column - 1] == figureValue.BlackKing)
+                    if ((figureAttacked.Contains(param.Position[row - 1, column - 1]) || param.Position[row - 1, column - 1] == figureValue.BlackKing) || param.KingAttackCheck == true)
                     {
                         futureRow = row - 1;
                         futureColumn = column - 1;
@@ -212,7 +212,7 @@ namespace Szachy_Projekt.Pieces
                 if (((row - 1 >= 0 && row - 1 <= 7) && (column + 1 >= 0 && column + 1 <= 7)))
                 {
                     
-                    if (figureAttacked.Contains(param.Position[row - 1, column + 1]) || param.Position[row - 1, column + 1] == figureValue.BlackKing)
+                    if ((figureAttacked.Contains(param.Position[row - 1, column + 1]) || param.Position[row - 1, column + 1] == figureValue.BlackKing) || param.KingAttackCheck == true)
                     {
                         futureRow = row - 1;
                         futureColumn = column + 1;

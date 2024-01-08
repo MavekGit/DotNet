@@ -84,15 +84,15 @@ namespace Szachy_Projekt.Pieces
 
             }
 
-            for (int i = 0; i < KingArea.GetLength(0); i++)
-            {
-                Debug.WriteLine("");
-                Debug.Write(KingArea[i, 0]);
+            //for (int i = 0; i < KingArea.GetLength(0); i++)
+            //{
+            //    Debug.WriteLine("");
+            //    Debug.Write(KingArea[i, 0]);
                 
-                Debug.Write(KingArea[i, 1]);
-                Debug.WriteLine("");
+            //    Debug.Write(KingArea[i, 1]);
+            //    Debug.WriteLine("");
 
-            }
+            //}
 
             //-------------------------------------------------//
 

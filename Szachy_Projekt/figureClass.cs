@@ -96,6 +96,7 @@ namespace Szachy_Projekt
         {
             param.KingAttackCheck = true;
             param.SquaresInCheck.Clear();
+            param.KingAttackingLines.Clear();
 
             for (int i = 0; i < 8; i++)
             {
@@ -203,7 +204,7 @@ namespace Szachy_Projekt
                     int R = square.Item1;
                     int C = square.Item2;
 
-                    Debug.WriteLine(" TO JEST Row  " + R + " TO JEST Column " + C );
+                    //Debug.WriteLine(" TO JEST Row  " + R + " TO JEST Column " + C );
                     //param.Buttons[R, C].Background = Brushes.Blue;
 
                     if (param.Position[R, C] == figureValue.WhiteKing)
@@ -225,7 +226,18 @@ namespace Szachy_Projekt
                     }
                 }
 
+                foreach (Tuple<int, int> square in param.KingAttackingLines)
+                {
+                    int R = square.Item1;
+                    int C = square.Item2;
+
+                    param.Buttons[R, C].Background = Brushes.Magenta;
+                    Debug.WriteLine(R + " R " + C + " C ");
+                }
+
+
             }
+
             else if(param.WhitePieces.Contains(figure))
             {
                 foreach (Tuple<int, int> square in param.SquaresInCheck)
@@ -251,6 +263,17 @@ namespace Szachy_Projekt
                         param.BlackKingInDanger = false;
                     }
                 }
+
+
+                foreach (Tuple<int, int> square in param.KingAttackingLines)
+                {
+                    int R = square.Item1;
+                    int C = square.Item2;
+
+                    param.Buttons[R, C].Background = Brushes.Purple;
+                    Debug.WriteLine(R + " R " + C + " C ");
+                }
+
             }
 
         }

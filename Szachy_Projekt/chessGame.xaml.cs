@@ -60,6 +60,8 @@ namespace Szachy_Projekt
         public static bool BlackKingInDanger { get; set; }
         public static bool WhiteKingInDanger { get; set; }
         public static List<Tuple <int,int>> SquaresInCheck { get; set; }
+        public static List<Tuple<int, int>> KingAttackingLines { get; set; }
+
 
         static param()
         {
@@ -82,6 +84,7 @@ namespace Szachy_Projekt
             WhitePieces = [figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteRook, figureValue.WhiteQueen, figureValue.WhiteKing];
 
             SquaresInCheck = new List<Tuple<int, int>>();
+            KingAttackingLines = new List<Tuple<int, int>>();
 
         }
     }

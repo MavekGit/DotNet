@@ -36,7 +36,7 @@ namespace Szachy_Projekt.Pieces
               
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
                 //}
             }
 
@@ -62,7 +62,7 @@ namespace Szachy_Projekt.Pieces
                
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 
@@ -87,7 +87,7 @@ namespace Szachy_Projekt.Pieces
 
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 
@@ -110,7 +110,7 @@ namespace Szachy_Projekt.Pieces
                 futureColumn = j;
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 
@@ -134,7 +134,7 @@ namespace Szachy_Projekt.Pieces
 
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 
@@ -156,7 +156,7 @@ namespace Szachy_Projekt.Pieces
                 futureColumn = j;
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 
@@ -179,7 +179,7 @@ namespace Szachy_Projekt.Pieces
                 futureColumn = j;
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 
@@ -203,7 +203,7 @@ namespace Szachy_Projekt.Pieces
 
 
                 ShowLegalMoves(futureRow, futureColumn, figureAttacked);
-
+                FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
             }
 

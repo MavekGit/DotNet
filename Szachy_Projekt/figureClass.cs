@@ -278,6 +278,111 @@ namespace Szachy_Projekt
 
         }
 
+        protected void FiugreAttackKing(int row, int column, int futureRow, int futureColumn, figureValue[] figureAttacked)
+        {
+            int rowDirection = 0;
+            int columnDirection = 0;
+            int tempRow = 0;
+            int tempColumn = 0;
+
+            if (param.Position[futureRow, futureColumn] == figureValue.BlackKing && param.GlobalTurn == true)
+            {
+
+                if (row > futureRow)
+                {
+                    rowDirection = 1;
+                }
+
+                if (row < futureRow)
+                {
+
+                    rowDirection = -1;
+                }
+
+                if (column > futureColumn)
+                {
+                    columnDirection = 1;
+                }
+
+                if (column < futureColumn)
+                {
+                    columnDirection = -1;
+                }
+
+                if (row == futureRow)
+                {
+                    rowDirection = 0;
+
+                }
+
+                if (column == futureColumn)
+                {
+                    columnDirection = 0;
+                }
+
+                Debug.WriteLine(row + " " + column + " " + futureRow + " " + futureColumn + " " + rowDirection + " " + columnDirection);
+                for (int i = futureRow, j = futureColumn; i != row || j != column; i += rowDirection, j += columnDirection)
+                {
+
+                    param.KingAttackingLines.Add(new Tuple<int, int>(i, j));
+
+                    Debug.WriteLine("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                }
+
+                param.KingAttackingLines.Add(new Tuple<int, int>(row, column));
+            }
+            else if (param.Position[futureRow, futureColumn] == figureValue.WhiteKing && param.GlobalTurn == false)
+            {
+                Debug.WriteLine(row + " " + column + " " + futureRow + " " + futureColumn + " " + rowDirection + " " + columnDirection);
+
+                if (row > futureRow)
+                {
+                    rowDirection = 1;
+                }
+
+                if (row < futureRow)
+                {
+
+                    rowDirection = -1;
+                }
+
+                if (column > futureColumn)
+                {
+                    columnDirection = 1;
+                }
+
+                if (column < futureColumn)
+                {
+                    columnDirection = -1;
+                }
+
+                if (row == futureRow)
+                {
+                    rowDirection = 0;
+
+                }
+
+                if (column == futureColumn)
+                {
+                    columnDirection = 0;
+                }
+
+
+                for (int i = futureRow, j = futureColumn; i != row || j != column; i += rowDirection, j += columnDirection)
+                {
+
+                    param.KingAttackingLines.Add(new Tuple<int, int>(i, j));
+
+                    Debug.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+
+                }
+                param.KingAttackingLines.Add(new Tuple<int, int>(row, column));
+            }
+
+        }
+
+
         public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked, figureValue[] figureColor)
         {
 

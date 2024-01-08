@@ -38,6 +38,19 @@ namespace Szachy_Projekt.Pieces
             }
 
         }
+
+
+        // TODO
+        // DLA SKOCZKA i PIONKA KING ATTACK LINES MUSI BYĆ INACZEJ ZAMIAST FOR PO PROSTU ZWRACAM POZYCJE FIGURY
+        // 
+
+
+
+
+
+
+
+
         //public void BlackKnightMove(int row, int column, Button button)
         //{
         //    //figureValue[] blackPiecesAttacked = new figureValue[] { figureValue.BlackPawn,figureValue.BlackRook, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackQueen};

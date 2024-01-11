@@ -31,7 +31,49 @@ namespace Szachy_Projekt.Pieces
                     futureRow = row + i;
                     futureColumn = column + j;
 
-                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                 //   ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                    if((futureRow >= 0 && futureRow <= 7) && (futureColumn >= 0 && futureColumn <= 7))
+                    {
+
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
+
+
+                        if (param.Position[futureRow,futureColumn]  == figureValue.BlackKing && param.GlobalTurn == true  )
+                        {
+                        
+                            param.KingAttackingLines.Add(new Tuple<int, int>(row, column));
+
+                        }
+                        else if (param.Position[futureRow, futureColumn] == figureValue.WhiteKing && param.GlobalTurn == false)
+                        {
+                            param.KingAttackingLines.Add(new Tuple<int, int>(row, column));
+                        }
+
+                    }
 
                 }
 

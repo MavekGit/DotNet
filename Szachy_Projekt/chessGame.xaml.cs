@@ -59,6 +59,7 @@ namespace Szachy_Projekt
         public static bool KingAttackCheck { get; set; }
         public static bool BlackKingInDanger { get; set; }
         public static bool WhiteKingInDanger { get; set; }
+        public static bool ChessboardAfterMoveUpdate { get; set; }
         public static List<Tuple <int,int>> SquaresInCheck { get; set; }
         public static List<Tuple<int, int>> KingAttackingLines { get; set; }
 
@@ -76,6 +77,7 @@ namespace Szachy_Projekt
 
             BlackKingInDanger = false;
             BlackKingInDanger = false;
+            ChessboardAfterMoveUpdate = false;
 
             BlackPiecesAttacked = [figureValue.BlackPawn, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackRook, figureValue.BlackQueen];
             WhitePiecesAttacked = [figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteRook, figureValue.WhiteQueen];
@@ -334,6 +336,7 @@ namespace Szachy_Projekt
 
             param.Initialize();
             generateChessboard();
+            param.GlobalTurn = true;
         }
     }
 }

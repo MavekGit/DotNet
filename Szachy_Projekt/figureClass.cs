@@ -478,11 +478,11 @@ namespace Szachy_Projekt
                     int R = square.Item1;
                     int C = square.Item2;
 
-                   // param.Buttons[R, C].Background = Brushes.Purple;
-                   // Debug.WriteLine(R + " R " + C + " C ");
+                    // param.Buttons[R, C].Background = Brushes.Purple;
+                    // Debug.WriteLine(R + " R " + C + " C ");
                 }
 
-              
+
             }
 
         }
@@ -541,10 +541,11 @@ namespace Szachy_Projekt
         }
 
 
-        private void CheckMate()
+        private void CheckMate(Button button)
         {
-            if((param.GlobalTurn == false && param.WhiteKingInDanger) || (param.GlobalTurn == true && param.BlackKingInDanger))
+            if ((param.WhiteKingInDanger) || (param.BlackKingInDanger))
             {
+                bool checkMate = true;
 
                 foreach (Tuple<int, int> square in param.KingAttackingLines)
                 {
@@ -556,11 +557,72 @@ namespace Szachy_Projekt
                         int RD = Dsquare.Item1;
                         int CD = Dsquare.Item2;
 
+                        Debug.WriteLine(RA + " " + CA + " " + RD + " " + CD);
 
-                        if (RA != RD && CA != CD && (param.Position[RA, RD] != figureValue.WhiteKing && param.Position[RA, RD] != figureValue.BlackKing))
+                        if ((RA == RD && CA == CD) && (param.Position[RA, CA] != figureValue.WhiteKing && param.Position[RA, CA] != figureValue.BlackKing))
                         {
-                            param.CheckMate = true;
+                            checkMate = false;
+                            break;
+                        }
+                    }
+                }
+                    if (checkMate)
+                    {
+                    //foreach (Tuple<int, int> square in param.SquaresInCheck)
+                    //{
+                    //    int R = square.Item1;
+                    //    int C = square.Item2;
 
+                    //    param.Buttons[R, C].Background = Brushes.Purple;
+                    //    Debug.WriteLine(R + " R " + C + " C ");
+                    //}
+
+                    param.KingLegalMovesAfterCheck.Clear();
+                            param.KingLegalMovesCheck = true;
+
+                            param.FirstClick = null;
+                            param.SecondClick = null;
+
+                    for (int i = 0; i < 8; i++)
+                            {
+                                for (int j = 0; j < 8; j++)
+                                {
+                                
+                                    if (param.GlobalTurn == true)
+                                    {
+
+                                        King blackKing = new King();
+
+                                        if (param.Position[i, j] == figureValue.BlackKing)
+                                        {
+
+                                            blackKing.FigurePicked(i, j, button, figureValue.BlackKing, param.WhitePiecesAttacked);
+                                        }
+                                    }
+                                    else if(param.GlobalTurn == false)
+                                    {
+                               
+                                        King whiteKing = new King();
+
+                                        if (param.Position[i, j] == figureValue.WhiteKing)
+                                        {
+
+                                            whiteKing.FigurePicked(i, j, button, figureValue.WhiteKing, param.BlackPiecesAttacked);
+                                        }
+                                    }
+                                }
+
+                                if(param.KingLegalMovesAfterCheck.Count == 0)
+                                {
+                                    param.CheckMate = true;
+                                }
+
+                            param.KingLegalMovesCheck = false;
+                    }
+
+
+                            if(param.CheckMate == true)
+                        {
 
                             for (int i = 0; i < 8; i++)
                             {
@@ -573,12 +635,11 @@ namespace Szachy_Projekt
                                 }
                             }
                         }
+
                     }
-
-
-                }
-
+                
             }
+
 
         }
 
@@ -603,7 +664,8 @@ namespace Szachy_Projekt
                 isKingChecked(button);
                 isKingInCheckUpdate(figure);
 
-                CheckMate();
+                // trzeba by skopiować listę z AfterMove... i do niej porównywać w funkcji
+                CheckMate(button);
 
                 param.FirstClick = null;
                 param.SecondClick = null;

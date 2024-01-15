@@ -104,6 +104,8 @@ namespace Szachy_Projekt.Pieces
                 {
                     if ((i != 0 || j != 0) && (row + i >= 0 && row + i <= 7) && (column + j >= 0 && column + j <= 7))
                     {
+
+                        Debug.WriteLine(i + " ::::::::::::::::::::::::::::::: " + j);
                         futureRow = row + i;
                         futureColumn = column + j;
 
@@ -117,7 +119,18 @@ namespace Szachy_Projekt.Pieces
                             }
                         }
 
+                        
+
                         if (param.SquaresInCheck.Any(square => futureRow == square.Item1 && futureColumn == square.Item2))
+                        {
+                            isPositionValid = false;
+                        }
+
+                        if (param.Position[row,column] == figureValue.BlackKing && param.BlackPieces.Contains(param.Position[futureRow,futureColumn]))
+                        {
+                            isPositionValid = false;
+                        }
+                        if (param.Position[row, column] == figureValue.WhiteKing && param.WhitePieces.Contains(param.Position[futureRow, futureColumn]))
                         {
                             isPositionValid = false;
                         }
@@ -126,6 +139,14 @@ namespace Szachy_Projekt.Pieces
                         if (isPositionValid)
                         {
                             ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                            Debug.WriteLine("Dostępne ruchy króla: " + futureRow + " " + futureColumn);
+
+                            if (param.KingLegalMovesCheck == true)
+                            {
+                                Debug.WriteLine("Dostępne ruchy króla: " + futureRow + " " + futureColumn);
+                                param.KingLegalMovesAfterCheck.Add(new Tuple<int, int>(futureRow, futureColumn));
+                            }
+
                         }
                     
                     }

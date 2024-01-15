@@ -65,7 +65,8 @@ namespace Szachy_Projekt
         public static bool KingDefendCheck { get; set; }
         public static bool CheckMate { get; set; }
         public static List<Tuple<int, int>> KingDefendingLines { get; set; }
-
+        public static List<Tuple<int, int>> KingLegalMovesAfterCheck { get; set; }
+        public static bool KingLegalMovesCheck { get; set; }
 
         static param()
         {
@@ -83,6 +84,7 @@ namespace Szachy_Projekt
             ChessboardAfterMoveUpdate = false;
             KingDefendCheck = false;
             CheckMate = false;
+            KingLegalMovesCheck = false;
 
             BlackPiecesAttacked = [figureValue.BlackPawn, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackRook, figureValue.BlackQueen];
             WhitePiecesAttacked = [figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteRook, figureValue.WhiteQueen];
@@ -93,6 +95,7 @@ namespace Szachy_Projekt
             SquaresInCheck = new List<Tuple<int, int>>();
             KingAttackingLines = new List<Tuple<int, int>>();
             KingDefendingLines = new List<Tuple<int, int>>();
+            KingLegalMovesAfterCheck = new List<Tuple<int, int>>();
         }
     }
 

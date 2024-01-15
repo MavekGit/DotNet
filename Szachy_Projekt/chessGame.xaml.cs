@@ -62,6 +62,9 @@ namespace Szachy_Projekt
         public static bool ChessboardAfterMoveUpdate { get; set; }
         public static List<Tuple <int,int>> SquaresInCheck { get; set; }
         public static List<Tuple<int, int>> KingAttackingLines { get; set; }
+        public static bool KingDefendCheck { get; set; }
+        public static bool CheckMate { get; set; }
+        public static List<Tuple<int, int>> KingDefendingLines { get; set; }
 
 
         static param()
@@ -78,6 +81,8 @@ namespace Szachy_Projekt
             BlackKingInDanger = false;
             BlackKingInDanger = false;
             ChessboardAfterMoveUpdate = false;
+            KingDefendCheck = false;
+            CheckMate = false;
 
             BlackPiecesAttacked = [figureValue.BlackPawn, figureValue.BlackKnight, figureValue.BlackBishop, figureValue.BlackRook, figureValue.BlackQueen];
             WhitePiecesAttacked = [figureValue.WhitePawn, figureValue.WhiteKnight, figureValue.WhiteBishop, figureValue.WhiteRook, figureValue.WhiteQueen];
@@ -87,7 +92,7 @@ namespace Szachy_Projekt
 
             SquaresInCheck = new List<Tuple<int, int>>();
             KingAttackingLines = new List<Tuple<int, int>>();
-
+            KingDefendingLines = new List<Tuple<int, int>>();
         }
     }
 
@@ -98,8 +103,11 @@ namespace Szachy_Projekt
 
     public partial class chessGame : Page
     {
+        private TimeSpan remainingTimeBlack;
+        private TimeSpan remainingTimeWhite;
+        private int g_slider_Value; 
 
-        public chessGame()
+        public chessGame(int sliderValue)
         {
             InitializeComponent();
             
@@ -107,7 +115,17 @@ namespace Szachy_Projekt
 
             generateChessboard();
 
+            g_slider_Value = sliderValue;
+            
 
+            remainingTimeBlack = TimeSpan.FromMinutes(sliderValue);
+            remainingTimeWhite = TimeSpan.FromMinutes(sliderValue);
+
+            TimeLeftBlack.Text = $"{remainingTimeBlack:hh\\:mm\\:ss}";
+            TimeLeftWhite.Text = $"{remainingTimeWhite:hh\\:mm\\:ss}";
+
+
+            Task.Run(() => CountdownTask());
         }
 
 
@@ -214,7 +232,75 @@ namespace Szachy_Projekt
 
         }
 
-      
+        private async Task CountdownTask()
+        {
+            while ((remainingTimeWhite.TotalSeconds >= 0 || remainingTimeBlack.TotalSeconds >= 0) && param.CheckMate == false)
+            {
+                if (param.GlobalTurn == true)
+                {
+                    remainingTimeWhite = remainingTimeWhite.Subtract(TimeSpan.FromSeconds(1));
+
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        
+                        TimeLeftWhite.Text = $"{remainingTimeWhite:hh\\:mm\\:ss}";
+                        PTM.Text = "White to Move";
+
+                        if (remainingTimeWhite.TotalSeconds == 0)
+                        {
+                            param.CheckMate = true;
+                            PTM.Text = "Black Wins";
+
+                        }
+
+                    });
+
+                    
+                }
+                else if(param.GlobalTurn == false) 
+                {
+                    remainingTimeBlack = remainingTimeBlack.Subtract(TimeSpan.FromSeconds(1));
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        TimeLeftBlack.Text = $"{remainingTimeBlack:hh\\:mm\\:ss}";
+                        PTM.Text = "Black to Move";
+
+                        if (remainingTimeBlack.TotalSeconds == 0)
+                        {
+                            param.CheckMate = true;
+                            PTM.Text = "White Wins";
+
+                        }
+
+                    });
+                }
+                 
+
+
+                await Task.Delay(1000);
+            }
+
+
+            await Dispatcher.InvokeAsync(() =>
+            {
+                if (param.CheckMate == true)
+                {
+                    if (param.GlobalTurn == true)
+                    {
+                        PTM.Text = "Black Wins";
+                    }
+                    else
+                    {
+                        PTM.Text = "White Wins";
+                    }
+                }
+            });
+
+
+           
+        }
+
+
 
 
         private void generateChessboard()
@@ -337,6 +423,14 @@ namespace Szachy_Projekt
             param.Initialize();
             generateChessboard();
             param.GlobalTurn = true;
+            param.FirstClick = null;
+            param.SecondClick = null;
+            remainingTimeBlack = TimeSpan.FromMinutes(g_slider_Value);
+            remainingTimeWhite = TimeSpan.FromMinutes(g_slider_Value);
+            TimeLeftBlack.Text = $"{remainingTimeBlack:hh\\:mm\\:ss}";
+            TimeLeftWhite.Text = $"{remainingTimeWhite:hh\\:mm\\:ss}";
+            
+
         }
     }
 }

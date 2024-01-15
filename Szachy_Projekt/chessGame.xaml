@@ -16,10 +16,10 @@
             <ColumnDefinition Width="0.4375*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            
+
         </Grid.RowDefinitions>
 
-        
+
         <UniformGrid x:Name="UGrid" Rows="8" Columns="8" Grid.Column="0">
 
 
@@ -55,19 +55,19 @@
 
             <TextBlock Grid.Row="2" Grid.Column="3" Text="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="X" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
+            <TextBlock x:Name="TimeLeftBlack" Grid.Row="3" Grid.Column="0" Text="X" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="X" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
+            <TextBlock x:Name="TimeLeftWhite" Grid.Row="3" Grid.Column="2" Text="X" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
 
             <TextBlock Grid.Row="1" Grid.Column="1" />
 
-            <Button Grid.Row="6" Grid.Column="1" Content="Undo the move"></Button>
+            <!--<Button Grid.Row="5" Grid.Column="1" Content="Undo the move" Margin="0,44,0,1" Grid.RowSpan="2"></Button>-->
 
             <Button Grid.Row="8" Grid.Column="1" Content="Reset Game" Click="ResetGameBtn"></Button>
 
         </Grid>
-        
+
     </Grid>
-    
-   
+
+
 </Page>

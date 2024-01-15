@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -88,13 +89,22 @@ namespace Szachy_Projekt
 
             }
 
-        }
+            if (param.KingDefendCheck == true && (futureRow >= 0 && futureRow < 8 && futureColumn >= 0 && futureColumn < 8))
+            {
+
+                param.KingDefendingLines.Add(new Tuple<int, int>(futureRow, futureColumn));
+
+            }
+
+    }
 
         protected void AfterMoveChessboardUpdate(Button button)
         {
             param.KingAttackCheck = true;
+            param.KingDefendCheck = true;
             param.SquaresInCheck.Clear();
             param.KingAttackingLines.Clear();
+            param.KingDefendingLines.Clear();
 
             for (int i = 0; i < 8; i++)
             {
@@ -185,7 +195,7 @@ namespace Szachy_Projekt
             }
 
             param.KingAttackCheck = false;
-
+            param.KingDefendCheck = false;
         }
 
         protected void AfterMoveIsKingInCheckUpdate(figureValue figure)
@@ -523,12 +533,54 @@ namespace Szachy_Projekt
                     param.KingAttackingLines.Add(new Tuple<int, int>(i, j));
                 }
 
+                // Dodajemy również pozycje figury do pol które należy zająć aby obronić się przed szachem
                 param.KingAttackingLines.Add(new Tuple<int, int>(row, column));
             }
            
 
         }
 
+
+        private void CheckMate()
+        {
+            if((param.GlobalTurn == false && param.WhiteKingInDanger) || (param.GlobalTurn == true && param.BlackKingInDanger))
+            {
+
+                foreach (Tuple<int, int> square in param.KingAttackingLines)
+                {
+                    int RA = square.Item1;
+                    int CA = square.Item2;
+
+                    foreach (Tuple<int, int> Dsquare in param.KingDefendingLines)
+                    {
+                        int RD = Dsquare.Item1;
+                        int CD = Dsquare.Item2;
+
+
+                        if (RA != RD && CA != CD && (param.Position[RA, RD] != figureValue.WhiteKing && param.Position[RA, RD] != figureValue.BlackKing))
+                        {
+                            param.CheckMate = true;
+
+
+                            for (int i = 0; i < 8; i++)
+                            {
+                                for (int j = 0; j < 8; j++)
+                                {
+                                    if (param.Buttons[i, j].Background == Brushes.Yellow)
+                                    {
+                                        param.Buttons[i, j].Background = Brushes.Orange;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+
+            }
+
+        }
 
         public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked, figureValue[] figureColor)
         {
@@ -550,6 +602,8 @@ namespace Szachy_Projekt
                 // Must check what is attacked 
                 isKingChecked(button);
                 isKingInCheckUpdate(figure);
+
+                CheckMate();
 
                 param.FirstClick = null;
                 param.SecondClick = null;

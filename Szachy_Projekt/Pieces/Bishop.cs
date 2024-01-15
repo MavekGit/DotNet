@@ -21,17 +21,14 @@ namespace Szachy_Projekt.Pieces
             int futureColumn = 0;
             
             int BreakLoop = 0;
-            //Debug.WriteLine("ROW " + row + "  COLUMN " + column);
 
             for(int i = row -1, j = column -1; i > -7 && j > -7; i--,j--)
             {
-                //for(int j = column; j > -7; j--)
-                //{
-                //Debug.WriteLine(row+i);
-                //Debug.WriteLine(column + j);
-
+     
                 if (((i < 0 || i > 7) || (j < 0 || j > 7)) || BreakLoop == 1)
                 {
+              
+
                     continue;
                 }
                 else if (param.Position[i, j] != figureValue.Empty)

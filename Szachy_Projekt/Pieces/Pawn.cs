@@ -25,7 +25,7 @@ namespace Szachy_Projekt.Pieces
             if (figureAttacked == param.WhitePiecesAttacked)
             {
 
-                if (row == 1 && param.KingAttackCheck == false)
+                if (row == 1 && (param.KingAttackCheck == false || param.KingDefendCheck == true))
                 {
 
                     for (int i = row, j = column; i < startRowBlack; i++)
@@ -43,14 +43,37 @@ namespace Szachy_Projekt.Pieces
                         futureRow = i;
                         futureColumn = j;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
 
                     }
 
                 }
                 
-                else if(row != 1 && param.KingAttackCheck == false)
+                else if(row != 1 && (param.KingAttackCheck == false || param.KingDefendCheck == true))
                 {
                     for (int i = row, j = column; i < otherRowBlack; i++)
                     {
@@ -65,7 +88,30 @@ namespace Szachy_Projekt.Pieces
                         futureRow = i;
                         futureColumn = j;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
 
                     }
@@ -101,7 +147,30 @@ namespace Szachy_Projekt.Pieces
                         futureRow = row + 1;
                         futureColumn = column - 1;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
                     }
 
@@ -115,7 +184,30 @@ namespace Szachy_Projekt.Pieces
                         futureRow = row + 1;
                         futureColumn = column + 1;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
                     }
                 }
@@ -127,7 +219,7 @@ namespace Szachy_Projekt.Pieces
             if (figureAttacked == param.BlackPiecesAttacked)
             {
 
-                if (row == 6 && param.KingAttackCheck == false)
+                if (row == 6 && (param.KingAttackCheck == false || param.KingDefendCheck == true))
                 {
 
                     for (int i = row, j = column; i > startRowWhite; i--)
@@ -144,13 +236,36 @@ namespace Szachy_Projekt.Pieces
                         futureRow = i;
                         futureColumn = j;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
 
                     }
 
                 }
-                else if(row != 6 && param.KingAttackCheck == false)
+                else if(row != 6 && (param.KingAttackCheck == false || param.KingDefendCheck == true))
                 {
                     for (int i = row, j = column; i > otherRowWhite; i--)
                     {
@@ -165,7 +280,30 @@ namespace Szachy_Projekt.Pieces
                         futureRow = i;
                         futureColumn = j;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
 
                     }
@@ -202,7 +340,30 @@ namespace Szachy_Projekt.Pieces
                         futureRow = row - 1;
                         futureColumn = column - 1;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
                     }
 
@@ -217,7 +378,30 @@ namespace Szachy_Projekt.Pieces
                         futureRow = row - 1;
                         futureColumn = column + 1;
 
-                        ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                        if ((param.GlobalTurn == false && param.BlackKingInDanger == true) || (param.GlobalTurn == true && param.WhiteKingInDanger == true))
+                        {
+
+                            foreach (Tuple<int, int> square in param.KingAttackingLines)
+                            {
+                                int R = square.Item1;
+                                int C = square.Item2;
+
+                                if (futureRow == R && futureColumn == C)
+                                {
+                                    ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+                                }
+                            }
+
+                        }
+                        else if ((param.BlackKingInDanger == false && param.GlobalTurn == false) || (param.WhiteKingInDanger == false && param.GlobalTurn == true))
+                        {
+
+                            ShowLegalMoves(futureRow, futureColumn, figureAttacked);
+
+                        }
+
+
+                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
                     }
                 }

@@ -32,7 +32,9 @@ namespace Szachy_Projekt
 
         private void startGame(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new chessGame());
+            int sliderValue = (int)TimeSetSlider.Value;
+            chessGame chessGamePage = new chessGame(sliderValue);
+            NavigationService.Navigate(new chessGame(sliderValue));
         }
     }
 }

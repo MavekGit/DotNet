@@ -59,7 +59,7 @@ namespace Szachy_Projekt.Pieces
                         }
 
 
-                        FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
+                        //FiugreAttackKing(row, column, futureRow, futureColumn, figureAttacked);
 
 
                         if (param.Position[futureRow,futureColumn]  == figureValue.BlackKing && param.GlobalTurn == true  )

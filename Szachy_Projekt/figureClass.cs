@@ -568,14 +568,7 @@ namespace Szachy_Projekt
                 }
                     if (checkMate)
                     {
-                    //foreach (Tuple<int, int> square in param.SquaresInCheck)
-                    //{
-                    //    int R = square.Item1;
-                    //    int C = square.Item2;
-
-                    //    param.Buttons[R, C].Background = Brushes.Purple;
-                    //    Debug.WriteLine(R + " R " + C + " C ");
-                    //}
+                  
 
                     param.KingLegalMovesAfterCheck.Clear();
                             param.KingLegalMovesCheck = true;
@@ -643,6 +636,15 @@ namespace Szachy_Projekt
 
         }
 
+        void RecordMove(figureValue Figur,int Row,int Column)
+        {
+            var database = new ChessMoveDB("C:\\Users\\MaciejWecki\\Desktop\\DotNet\\LabDotNet\\Szachy_Projekt\\Moves.txt");
+            var newRecord = new[] {Figur.ToString(), Row.ToString(), Column.ToString() };
+
+            database.AddRecord(newRecord);
+
+        }
+
         public void FigureMove(int row, int column, Button button, figureValue figure, ImageSource figureImage ,figureValue[] figureAttacked, figureValue[] figureColor)
         {
                 
@@ -656,6 +658,8 @@ namespace Szachy_Projekt
                 param.Buttons[param.CurrentRow, param.CurrentColumn].Content = "";
                 param.Position[param.CurrentRow, param.CurrentColumn] = figureValue.Empty;
 
+                RecordMove(figure,param.CurrentRow, param.CurrentColumn);
+
                 // Check if our King in check
                 AfterMoveChessboardUpdate(button);
                 AfterMoveIsKingInCheckUpdate(figure);
@@ -664,7 +668,7 @@ namespace Szachy_Projekt
                 isKingChecked(button);
                 isKingInCheckUpdate(figure);
 
-                // trzeba by skopiować listę z AfterMove... i do niej porównywać w funkcji
+                
                 CheckMate(button);
 
                 param.FirstClick = null;

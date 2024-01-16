@@ -1,0 +1,4 @@
+WhitePawn,6,3
+BlackPawn,1,3
+WhiteKnight,7,6
+BlackPawn,1,7
